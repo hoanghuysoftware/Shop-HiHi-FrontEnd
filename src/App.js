@@ -1,12 +1,14 @@
-import "./App.css";
-import Header from "./components/Header";
+import './App.css';
+import ProductDetail from './components/common/ProductDetail';
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-    </div>
-  );
+    return (
+        <div className="App">
+            {/* <Home /> */}
+            {/* <Product /> */}
+            <ProductDetail />
+        </div>
+    );
 }
 
 export default App;

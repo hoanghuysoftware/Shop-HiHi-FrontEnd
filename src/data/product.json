@@ -1,0 +1,17 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "[New 100%] HP Victus 15 fb2063dx 9Z7L4UA - AMD Ryzen 5-7535HS | Radeon RX 6550M | 15.6 inch Full HD 144Hz",
+            "thumbnail": "/images/product-test.jpg",
+            "CPU": "R5 - 7535HS",
+            "RAM": "8GB DDR5",
+            "Storage": "SSD 512GB NVMe",
+            "GraphicsCard": "Radeon RX 6550M",
+            "Display": "15.6\" FHD 144Hz",
+            "oldPrice": 25990000,
+            "discountPercentage": 25,
+            "finalPrice": 14990000
+        }
+    ]
+}

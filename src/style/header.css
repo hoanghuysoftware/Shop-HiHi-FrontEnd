@@ -150,26 +150,10 @@
     font-size: 14px;
     font-weight: 500;
     color: #2b2d42;
-    position: relative; /* Giúp pseudo-element định vị dựa trên chính element này */
-    transition: color 0.2s ease-in-out;
+    position: relative;
 }
-
-.header-bottom-item__link:after {
-    content: '';
-    display: block;
-    width: 0%;
-    height: 2px;
-    background-color: var(--highlight-text); /* Sửa đúng tên biến */
-    position: absolute;
-    left: 0;
-    bottom: 10%; /* Gạch dưới xuất hiện ở đáy của link */
-    transition: width 0.3s ease-in-out;
-}
-
 .header-bottom-item__link:hover {
-    color: var(--highlight-text); /* Đổi màu chữ khi hover */
-}
-
-.header-bottom-item__link:hover:after {
-    width: 100%; /* Mở rộng gạch dưới khi hover */
+    color: var(--hightligth-text);
+    width: 100%;
+    transition: 0.2s color;
 }
