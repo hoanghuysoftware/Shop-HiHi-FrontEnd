@@ -1,0 +1,12 @@
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--hightligth-text);
+    color: aliceblue;
+    border: none;
+    border-radius: 50%;
+    font-size: 25px;
+    padding: 5px 10px;
+    transition: opacity 0.3s ease-in-out;
+}

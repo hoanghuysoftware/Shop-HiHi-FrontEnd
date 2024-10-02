@@ -1,0 +1,281 @@
+.product-detail-top {
+    font-size: 14px;
+    padding: 10px 0 0px;
+}
+.link-item a {
+    text-decoration: none;
+    color: #000;
+}
+.link-item {
+    color: #ccc;
+}
+
+.product-detail-name {
+    font-size: 19px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.image-mini-list {
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-right: 0;
+    margin-left: 0;
+}
+.carousel-indicators .image-mini-item {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-top: 4%;
+    display: block;
+    width: 100%;
+    height: 60px;
+}
+
+.product-detail-main-item {
+    background-color: #fff;
+}
+
+.product-detail-main-item:nth-child(2) {
+    text-align: left;
+}
+
+.price-sale {
+    font-weight: 700;
+    color: var(--hightligth-text);
+    font-size: 24px;
+}
+
+.old-price {
+    font-size: 14px;
+}
+.old-price span {
+    color: var(--hightligth-text);
+    font-weight: 700;
+    margin-left: 5px;
+}
+.product-quantity {
+    margin: 10px 0 20px;
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+}
+.product-quantity-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 0;
+    margin-right: 5px;
+}
+.product-quantity-input {
+    width: 20%;
+    margin: 0 5px;
+}
+
+.btn-control-item {
+    width: 100%;
+    height: 50px;
+    font-size: 22px;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+.btn-control-item:first-child {
+    margin-bottom: 10px;
+}
+
+.btn-cart {
+    border-color: #ff9401;
+    background: var(--hightligth-text);
+}
+
+.btn-order:hover {
+    border-color: #ff9401;
+    opacity: 0.8;
+}
+
+.btn-cart:hover {
+    background: var(--hightligth-text);
+    opacity: 0.8;
+    border-color: var(--hightligth-text);
+}
+
+.btn-order {
+    background: linear-gradient(180deg, #ffba28 0%, #ff9401 79.17%);
+    border-color: #ff9401;
+}
+
+.product-warranty,
+.product-yentammuahang {
+    border-radius: 10px;
+    border: 2px solid var(--hightligth-text);
+    margin-bottom: 10px;
+}
+
+.product-title-2 {
+    padding: 12px;
+    font-weight: 700;
+    border-bottom: 1px solid #d9d9d9;
+    font-size: 19px;
+}
+.product-2-content {
+    padding: 10px;
+    font-size: 14px;
+    text-align: left;
+}
+.product-2-content p {
+    line-height: 20px;
+    padding-bottom: 5px;
+    position: relative;
+}
+.product-yentammuahang .product-2-content p {
+    padding-left: 10px;
+}
+
+.product-yentammuahang .product-2-content p::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border: 0.8px solid #777;
+    border-radius: 50%;
+}
+
+.product-detail-info {
+    margin-top: 20px;
+}
+
+.product-detail-info-left,
+.product-detail-info-right {
+    background: #fff;
+    border-radius: 15px;
+}
+.product-detail-info-title {
+    margin-bottom: 0.5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit;
+    text-align: left;
+    font-size: 20px;
+    padding-top: 10px;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.product-detail-info-title span {
+    padding-bottom: 10px;
+    padding-left: 15px;
+    border-bottom: 1px solid var(--hightligth-text);
+}
+
+.product-detail-info-content {
+    font-size: 14pt;
+}
+
+.product-detail-info-content table {
+    width: 100%;
+}
+
+.product-detail-info-content tbody {
+    margin: 0;
+    font-size: 14px;
+    text-align: left;
+}
+
+.product-detail-info-content tr > td:first-child {
+    padding: 5px 0;
+    font-weight: 700;
+    width: 30%;
+}
+
+.product-detail-same {
+    margin: 20px 0;
+    background: #fff;
+    border-radius: 10px;
+    width: 100%;
+}
+.product-detail-same-title {
+    padding: 20px 0 10px;
+    font-size: 24px;
+}
+
+.product-detail-same-item {
+    margin-top: 20px;
+}
+
+.product-detail-comment {
+    margin-top: 10px;
+}
+
+.product-detail-comment {
+    padding: 10px;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.product-detail-same-title {
+    font-size: 20px;
+}
+.product-detail-comment-list {
+    margin: 10px 0;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.product-detail-comment-item {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.product-detail-comment-item::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 80%;
+    transform: translateX(-50%);
+    height: 1px;
+    background: var(--hightligth-text);
+}
+
+.comment-top {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.comment-user-name {
+    font-weight: 600;
+    margin-right: 10px;
+}
+.comment-date {
+    font-size: 16px;
+    color: #777;
+}
+
+.comment-rating {
+    font-size: 12px;
+    color: #ff7b01;
+    text-align: left;
+}
+.comment-content {
+    text-align: left;
+    font-size: 14px;
+}
+
+.comment-control {
+    margin: 10px 0;
+}
+
+.btn-comment {
+    border-radius: 15px;
+    color: #fff;
+    font-weight: 500;
+    border-color: unset;
+    background: var(--hightligth-text);
+}

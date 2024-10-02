@@ -4,11 +4,15 @@
     padding: 0 -5px;
     flex-wrap: wrap;
 }
+.product-list a {
+    text-decoration: none;
+    color: unset;
+}
 
 .product-item {
     margin: 5px;
     padding: 5px;
-    max-width: 19%;
+    /* max-width: 19%; */
     border: 2px solid #f1f1f1;
 }
 .product-item:hover {
@@ -22,7 +26,7 @@
     height: auto;
 }
 .product-item-title {
-    text-align: center;
+    text-align: left;
     font-weight: 900;
     font-size: 14px;
     padding: 5px 0;
