@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import React from 'react';
 import '../style/header.css';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
     constructor(props) {
@@ -31,14 +32,151 @@ class Header extends Component {
                                 </div>
                             </div>
                             <div className="col header-top-right">
-                                <div className="header-top__item">
-                                    <i className="header-icon fa-regular fa-user"></i>
-                                    <span>Tài khoản</span>
+                                <div className="header-top__item header-top__account">
+                                    <div className="btn-group">
+                                        <button
+                                            type="button"
+                                            className="btn btn-danger dropdown-toggle btn-account-pop"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                        >
+                                            <i className="header-icon fa-regular fa-user"></i>
+                                            <span style={{ fontSize: 12 }}>Tài khoản</span>
+                                        </button>
+                                        <ul className="dropdown-menu">
+                                            <li>
+                                                <a className="dropdown-item" href="/">
+                                                    Tài khoản của tôi
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a className="dropdown-item" href="/">
+                                                    Đơn mua
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <hr className="dropdown-divider" />
+                                            </li>
+                                            <li>
+                                                <a className="dropdown-item" href="/">
+                                                    Đăng xuất
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div className="header-top__item">
-                                    <span className="number-notify">2</span>
-                                    <i className="header-icon fa-regular fa-bell"></i>
-                                    <span>Thông báo</span>
+                                    <div className="btn-group dropstart">
+                                        <button
+                                            type="button"
+                                            className="btn btn-secondary dropdown-toggle btn-notify"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false"
+                                        >
+                                            <span className="number-notify">2</span>
+                                            <i className="header-icon fa-regular fa-bell"></i>
+                                            <span style={{ fontSize: '12px' }}>Thông báo</span>
+                                        </button>
+                                        <ul className="dropdown-menu notify-wapper">
+                                            <h3 className="dropdown-heading">Thông báo mới nhận</h3>
+                                            <div className="notify-list">
+                                                <li>
+                                                    <a className="dropdown-item" href="/">
+                                                        <div className="row notify-content">
+                                                            <div className="col col-3">
+                                                                <img
+                                                                    src={`${process.env.PUBLIC_URL}/images/product-test.jpg`}
+                                                                    alt=""
+                                                                />
+                                                            </div>
+                                                            <div className="col col-9">
+                                                                <h4 className="notify-title">Đã đặt hàng thành công</h4>
+                                                                <div className="notify-item-content">
+                                                                    Vui lòng theo dõi tình trạng đơn hàng
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a className="dropdown-item" href="/">
+                                                        <div className="row notify-content">
+                                                            <div className="col col-3">
+                                                                <img
+                                                                    src={`${process.env.PUBLIC_URL}/images/product-test.jpg`}
+                                                                    alt=""
+                                                                />
+                                                            </div>
+                                                            <div className="col col-9">
+                                                                <h4 className="notify-title">Đã đặt hàng thành công</h4>
+                                                                <div className="notify-item-content">
+                                                                    Vui lòng theo dõi tình trạng đơn hàng
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a className="dropdown-item" href="/">
+                                                        <div className="row notify-content">
+                                                            <div className="col col-3">
+                                                                <img
+                                                                    src={`${process.env.PUBLIC_URL}/images/product-test.jpg`}
+                                                                    alt=""
+                                                                />
+                                                            </div>
+                                                            <div className="col col-9">
+                                                                <h4 className="notify-title">Đã đặt hàng thành công</h4>
+                                                                <div className="notify-item-content">
+                                                                    Vui lòng theo dõi tình trạng đơn hàng
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a className="dropdown-item" href="/">
+                                                        <div className="row notify-content">
+                                                            <div className="col col-3">
+                                                                <img
+                                                                    src={`${process.env.PUBLIC_URL}/images/product-test.jpg`}
+                                                                    alt=""
+                                                                />
+                                                            </div>
+                                                            <div className="col col-9">
+                                                                <h4 className="notify-title">Đã đặt hàng thành công</h4>
+                                                                <div className="notify-item-content">
+                                                                    Vui lòng theo dõi tình trạng đơn hàng
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a className="dropdown-item" href="/">
+                                                        <div className="row notify-content">
+                                                            <div className="col col-3">
+                                                                <img
+                                                                    src={`${process.env.PUBLIC_URL}/images/product-test.jpg`}
+                                                                    alt=""
+                                                                />
+                                                            </div>
+                                                            <div className="col col-9">
+                                                                <h4 className="notify-title">Đã đặt hàng thành công</h4>
+                                                                <div className="notify-item-content">
+                                                                    Vui lòng theo dõi tình trạng đơn hàng
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </div>
+
+                                            <button type="button" className="btn btn-outline-danger">
+                                                Xem tất cả
+                                            </button>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -75,6 +213,61 @@ class Header extends Component {
                                 <div className="cart-wapper">
                                     <i className="cart-icon fa-solid fa-cart-shopping"></i>
                                     <span className="cart-number">5</span>
+                                </div>
+
+                                <div className="mini-cart">
+                                    <h3 className="mini-cart-title">Sản phẩm mới thêm</h3>
+                                    <ul className="mini-cart-list">
+                                        <div className="mini-cart-wapper">
+                                            <Link to={`/product/${1}`}>
+                                                <li className="row mini-cart-item">
+                                                    <div className="col col-3 mini-cart-item-img">
+                                                        <img
+                                                            src={`${process.env.PUBLIC_URL}/images/product-test.jpg`}
+                                                            alt=""
+                                                            className="mini-cart-item-img-data"
+                                                        />
+                                                    </div>
+                                                    <div className="col col-6 mini-cart-item-info">
+                                                        <p>
+                                                            [New 100%] HP Victus 15 fb2063dx 9Z7L4UA - AMD Ryzen
+                                                            5-7535HS | Radeon RX 6550M | 15.6 inch Full HD 144Hz
+                                                        </p>
+                                                    </div>
+                                                    <div className="col col-3 mini-cart-item-price">
+                                                        <p>14.990.000 đ</p>
+                                                        <p>x2</p>
+                                                    </div>
+                                                </li>
+                                            </Link>
+                                            <Link to={`/product/${2}`}>
+                                                <li className="row mini-cart-item">
+                                                    <div className="col col-3 mini-cart-item-img">
+                                                        <img
+                                                            src={`${process.env.PUBLIC_URL}/images/product-test.jpg`}
+                                                            alt=""
+                                                            className="mini-cart-item-img-data"
+                                                        />
+                                                    </div>
+                                                    <div className="col col-6 mini-cart-item-info">
+                                                        <p>
+                                                            [New 100%] HP Victus 15 fb2063dx 9Z7L4UA - AMD Ryzen
+                                                            5-7535HS | Radeon RX 6550M | 15.6 inch Full HD 144Hz
+                                                        </p>
+                                                    </div>
+                                                    <div className="col col-3 mini-cart-item-price">
+                                                        <p>14.990.000 đ</p>
+                                                        <p>x2</p>
+                                                    </div>
+                                                </li>
+                                            </Link>
+                                        </div>
+                                        <Link to={'/'}>
+                                            <button type="button" className="btn btn-outline-secondary">
+                                                Xem tất cả
+                                            </button>
+                                        </Link>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

@@ -3,6 +3,7 @@ import '../style/productdetail.css';
 import Product from '../components/common/Product';
 import BackToTop from '../components/common/BackToTop';
 import Header from '../components/Header';
+import { Link } from 'react-router-dom';
 
 class ProductDetail extends Component {
     constructor(props) {
@@ -351,9 +352,11 @@ class ProductDetail extends Component {
                                 </div>
                             </div>
                             <div className="comment-control">
-                                <button type="button" className="btn btn-info btn-comment">
-                                    Xem tất cả đánh giá
-                                </button>
+                                <Link to={`/comment/${product.id}`}>
+                                    <button type="button" className="btn btn-info btn-comment">
+                                        Xem tất cả đánh giá
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                         <div className="product-detail-same">

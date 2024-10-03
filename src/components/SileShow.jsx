@@ -85,7 +85,7 @@ class SileShow extends Component {
                         </button>
                     </div>
                 </div>
-                <div className="row gx-5 sile-list">
+                <div className="row gx-1 sile-list">
                     <div className="col col-4 sile-item">
                         <img src={`${process.env.PUBLIC_URL}/images/img1.jpg`} alt="" className="sile-item-img" />
                     </div>
