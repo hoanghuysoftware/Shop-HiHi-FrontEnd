@@ -262,7 +262,7 @@ class Header extends Component {
                                                 </li>
                                             </Link>
                                         </div>
-                                        <Link to={'/'}>
+                                        <Link to={'/user/1/cart'}>
                                             <button type="button" className="btn btn-outline-secondary">
                                                 Xem tất cả
                                             </button>

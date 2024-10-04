@@ -1,0 +1,87 @@
+.check-out-body {
+    margin-top: 5px;
+}
+.check-out-container {
+    padding: 20px;
+    background-color: #fff;
+    text-align: left;
+}
+.check-out-info-order {
+    border: 2px solid var(--hightligth-text);
+    padding: 18px;
+}
+
+.check-out-title {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.check-out-left-content label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+/* right */
+.check-out-info-order {
+    text-align: center;
+}
+.check-out-info-order .check-out-title,
+.check-out-info-order .check-out-payment {
+    text-align: left;
+}
+
+.check-out-info-order-content {
+    margin-top: 5px;
+    text-align: left;
+}
+
+.check-out-order thead th {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--hightligth-text);
+}
+
+.check-out-order tbody tr td {
+    font-size: 14px;
+    padding: 10px 0;
+}
+
+.check-out-order tbody tr td:first-child {
+    width: 69%;
+}
+.check-out-order tbody tr td:nth-child(2) {
+    text-align: right;
+    font-weight: 600;
+    color: rgb(22, 115, 220);
+}
+.check-out-order tbody tr td:last-child {
+    text-align: center;
+}
+
+.table-last-col {
+    font-size: 20px !important;
+    border-top: 1px solid var(--hightligth-text);
+    font-weight: 600;
+}
+.table-last-col:last-child {
+    color: var(--hightligth-text) !important;
+}
+
+.btn-check-out {
+    width: 100%;
+    margin: 10px auto 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--hightligth-text);
+    border-color: var(--hightligth-text);
+    border-width: 2px;
+    text-transform: uppercase;
+}
+.btn-check-out:hover {
+    background: #fff;
+    color: var(--hightligth-text);
+    border-color: var(--hightligth-text);
+}

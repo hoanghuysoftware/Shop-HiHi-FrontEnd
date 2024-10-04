@@ -179,9 +179,14 @@ class ProductDetail extends Component {
                                         </div>
 
                                         <div className="btn-control">
-                                            <button type="button" className="btn btn-primary btn-control-item btn-cart">
-                                                Thêm vào giỏ hàng
-                                            </button>
+                                            <Link to={`/user/${1}/cart`}>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-primary btn-control-item btn-cart"
+                                                >
+                                                    Thêm vào giỏ hàng
+                                                </button>
+                                            </Link>
                                             <button
                                                 type="button"
                                                 className="btn btn-secondary btn-control-item btn-order"
