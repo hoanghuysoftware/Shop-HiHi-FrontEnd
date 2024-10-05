@@ -145,7 +145,6 @@ class CheckOut extends Component {
                                             type="radio"
                                             name="paymentMethod"
                                             id="online"
-                                            defaultChecked
                                         />
                                         <label className="form-check-label" htmlFor="online">
                                             <img
@@ -161,6 +160,7 @@ class CheckOut extends Component {
                                             type="radio"
                                             name="paymentMethod"
                                             id="offline"
+                                            defaultChecked
                                         />
                                         <label className="form-check-label" htmlFor="offline">
                                             Thanh toán khi nhận

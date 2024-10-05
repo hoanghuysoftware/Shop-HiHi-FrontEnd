@@ -1,0 +1,52 @@
+.address-user-body {
+    padding: 0 5px;
+}
+.address-user-top {
+    padding: 5px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.address-user-top-title {
+    font-size: 20px;
+    color: #333;
+    font-weight: 600;
+}
+
+.address-user-top button {
+    background: #fff;
+    color: var(--hightligth-text);
+    border-width: 2px;
+    border-color: var(--hightligth-text);
+}
+.address-user-top button:hover {
+    background: var(--hightligth-text);
+    color: #fff;
+    border-color: var(--hightligth-text);
+}
+
+.address-user-main {
+    margin-top: 20px;
+}
+
+.address-user-main-title {
+    color: #333;
+    font-size: 18px;
+    font-weight: 400;
+}
+.address-user-main-list {
+    margin: 10px 0;
+}
+.address-user-main-item {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    align-items: center;
+    color: #000;
+    font-size: 16px;
+}
+.address-user-main-control button:first-child {
+    margin-right: 5px;
+}

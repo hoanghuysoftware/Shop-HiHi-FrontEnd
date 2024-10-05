@@ -1,10 +1,11 @@
 .check-out-body {
-    margin-top: 5px;
+    margin-top: 10px;
 }
 .check-out-container {
     padding: 20px;
     background-color: #fff;
     text-align: left;
+    border-radius: 10px;
 }
 .check-out-info-order {
     border: 2px solid var(--hightligth-text);

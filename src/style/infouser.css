@@ -1,0 +1,56 @@
+.info-user-top {
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+}
+.info-user-title {
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+    color: #000;
+}
+.info-user-explain {
+    font-size: 16px;
+    color: #90798c;
+    font-weight: 400;
+}
+
+.info-user-main {
+    margin-top: 30px;
+}
+.form-item,
+.radio-gender {
+    display: flex;
+    align-items: center;
+}
+.radio-gender .form-check:first-child {
+    margin-right: 20px;
+}
+.radio-gender .form-check label {
+    color: #000;
+}
+.info-user-main label {
+    color: #90798c;
+    font-size: 14px;
+    width: 20%;
+}
+
+.btn-control {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    display: block;
+    padding: 10px 0 20px;
+}
+.btn-control button {
+    width: 40%;
+    background: var(--hightligth-text);
+    border-color: var(--hightligth-text);
+    font-weight: 500;
+    border-width: 2px;
+}
+
+.btn-control button:hover {
+    background: #fff;
+    color: var(--hightligth-text);
+    border-color: var(--hightligth-text);
+}

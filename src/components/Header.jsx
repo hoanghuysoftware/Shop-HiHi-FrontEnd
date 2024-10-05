@@ -45,9 +45,9 @@ class Header extends Component {
                                         </button>
                                         <ul className="dropdown-menu">
                                             <li>
-                                                <a className="dropdown-item" href="/">
-                                                    Tài khoản của tôi
-                                                </a>
+                                                <Link to={`/user/${1}/info`}>
+                                                    <p className="dropdown-item">Tài khoản của tôi</p>
+                                                </Link>
                                             </li>
                                             <li>
                                                 <a className="dropdown-item" href="/">
@@ -279,6 +279,11 @@ class Header extends Component {
                             <div className="col header-bottom-item">
                                 <a href="/" className="header-bottom-item__link">
                                     Trang chủ
+                                </a>
+                            </div>
+                            <div className="col header-bottom-item">
+                                <a href="/" className="header-bottom-item__link">
+                                    Tính năng gợi ý
                                 </a>
                             </div>
                             <div className="col header-bottom-item">

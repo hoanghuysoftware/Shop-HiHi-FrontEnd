@@ -6,6 +6,7 @@ import Product from './components/common/Product';
 import Comment from './pages/Comment';
 import Cart from './pages/Cart';
 import CheckOut from './pages/CheckOut';
+import Info from './pages/Info';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/comment/:productId" element={<Comment />} />
                     <Route path="/user/:userId/cart" element={<Cart />} />
                     <Route path="/user/:userId/order" element={<CheckOut />} />
+                    <Route path="/user/:userId/info" element={<Info />} />
                 </Routes>
             </div>
         </Router>
