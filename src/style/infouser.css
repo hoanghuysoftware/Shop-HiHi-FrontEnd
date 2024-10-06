@@ -41,16 +41,16 @@
     display: block;
     padding: 10px 0 20px;
 }
-.btn-control button {
+/* .btn-control button {
     width: 40%;
     background: var(--hightligth-text);
     border-color: var(--hightligth-text);
     font-weight: 500;
     border-width: 2px;
-}
+} */
 
-.btn-control button:hover {
+/* .btn-control button:hover {
     background: #fff;
     color: var(--hightligth-text);
     border-color: var(--hightligth-text);
-}
+} */

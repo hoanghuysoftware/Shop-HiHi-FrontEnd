@@ -30,7 +30,7 @@ class InfoAddress extends React.Component {
                         id="new-address"
                         data-bs-backdrop="static"
                         data-bs-keyboard="false"
-                        tabindex="-1"
+                        tabIndex="-1"
                         aria-labelledby="new-addressLabel"
                         aria-hidden="true"
                     >
@@ -53,7 +53,7 @@ class InfoAddress extends React.Component {
                                             <label htmlFor="tinh">Tỉnh</label>
                                             <select
                                                 id="tinh"
-                                                className="form-select form-select-sm"
+                                                className="form-select form-select-sm shadow-sm"
                                                 aria-label="Small select example"
                                             >
                                                 <option selected>Open this select menu</option>
@@ -66,7 +66,7 @@ class InfoAddress extends React.Component {
                                             <label htmlFor="quan">Quận/Huyện</label>
                                             <select
                                                 id="quan"
-                                                className="form-select form-select-sm"
+                                                className="form-select form-select-sm shadow-sm"
                                                 aria-label="Small select example"
                                             >
                                                 <option selected>Open this select menu</option>
@@ -79,7 +79,7 @@ class InfoAddress extends React.Component {
                                             <label htmlFor="xa">Xã</label>
                                             <select
                                                 id="xa"
-                                                className="form-select form-select-sm"
+                                                className="form-select form-select-sm shadow-sm"
                                                 aria-label="Small select example"
                                             >
                                                 <option selected>Open this select menu</option>
@@ -91,7 +91,7 @@ class InfoAddress extends React.Component {
                                         <div className="address-modal-item">
                                             <div className="form-floating">
                                                 <textarea
-                                                    className="form-control my-2"
+                                                    className="form-control my-2 shadow-sm"
                                                     placeholder="Leave a comment here"
                                                     id="detail"
                                                     style={{ height: '100px' }}
@@ -102,7 +102,11 @@ class InfoAddress extends React.Component {
                                     </div>
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
+                                    <button
+                                        type="button"
+                                        className="btn btn-secondary shadow-sm"
+                                        data-bs-dismiss="modal"
+                                    >
                                         Hủy
                                     </button>
                                     <button type="button" className="btn btn-primary">
@@ -121,7 +125,12 @@ class InfoAddress extends React.Component {
                                 <p>{this.state.address}</p>
                             </div>
                             <div className="col col-4 address-user-main-control">
-                                <button type="button" className="btn btn-success">
+                                <button
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#new-address"
+                                    type="button"
+                                    className="btn btn-success"
+                                >
                                     Cập nhật
                                 </button>
                                 <button type="button" className="btn btn-danger">
@@ -134,7 +143,12 @@ class InfoAddress extends React.Component {
                                 <p>{this.state.address}</p>
                             </div>
                             <div className="col col-4 address-user-main-control">
-                                <button type="button" className="btn btn-success">
+                                <button
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#new-address"
+                                    type="button"
+                                    className="btn btn-success"
+                                >
                                     Cập nhật
                                 </button>
                                 <button type="button" className="btn btn-danger">

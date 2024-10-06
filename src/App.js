@@ -7,6 +7,7 @@ import Comment from './pages/Comment';
 import Cart from './pages/Cart';
 import CheckOut from './pages/CheckOut';
 import Info from './pages/Info';
+import Order from './pages/Order';
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                     <Route path="/product-list" element={<Product />} />
                     <Route path="/product/:productId" element={<ProductDetail />} />
                     <Route path="/comment/:productId" element={<Comment />} />
+                    <Route path="/order/:orderId" element={<Order />} />
                     <Route path="/user/:userId/cart" element={<Cart />} />
                     <Route path="/user/:userId/order" element={<CheckOut />} />
                     <Route path="/user/:userId/info" element={<Info />} />

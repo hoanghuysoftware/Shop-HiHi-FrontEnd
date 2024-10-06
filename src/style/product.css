@@ -14,6 +14,7 @@
     padding: 5px;
     /* max-width: 19%; */
     border: 2px solid #f1f1f1;
+    background-color: #fff;
 }
 .product-item:hover {
     margin-top: -1px;

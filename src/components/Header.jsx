@@ -50,9 +50,9 @@ class Header extends Component {
                                                 </Link>
                                             </li>
                                             <li>
-                                                <a className="dropdown-item" href="/">
-                                                    Đơn mua
-                                                </a>
+                                                <Link to={`/user/${1}/info?tab=order-history`}>
+                                                    <p className="dropdown-item">Đơn mua</p>
+                                                </Link>
                                             </li>
                                             <li>
                                                 <hr className="dropdown-divider" />
@@ -209,65 +209,67 @@ class Header extends Component {
                                     </form>
                                 </div>
                             </div>
-                            <div className="p-2 col-md-3 header-cart">
-                                <div className="cart-wapper">
-                                    <i className="cart-icon fa-solid fa-cart-shopping"></i>
-                                    <span className="cart-number">5</span>
-                                </div>
+                            <div className="p-2 col-md-3 header-cart-big">
+                                <div className="header-cart ">
+                                    <div className="cart-wapper">
+                                        <i className="cart-icon fa-solid fa-cart-shopping"></i>
+                                        <span className="cart-number">5</span>
+                                    </div>
 
-                                <div className="mini-cart">
-                                    <h3 className="mini-cart-title">Sản phẩm mới thêm</h3>
-                                    <ul className="mini-cart-list">
-                                        <div className="mini-cart-wapper">
-                                            <Link to={`/product/${1}`}>
-                                                <li className="row mini-cart-item">
-                                                    <div className="col col-3 mini-cart-item-img">
-                                                        <img
-                                                            src={`${process.env.PUBLIC_URL}/images/product-test.jpg`}
-                                                            alt=""
-                                                            className="mini-cart-item-img-data"
-                                                        />
-                                                    </div>
-                                                    <div className="col col-6 mini-cart-item-info">
-                                                        <p>
-                                                            [New 100%] HP Victus 15 fb2063dx 9Z7L4UA - AMD Ryzen
-                                                            5-7535HS | Radeon RX 6550M | 15.6 inch Full HD 144Hz
-                                                        </p>
-                                                    </div>
-                                                    <div className="col col-3 mini-cart-item-price">
-                                                        <p>14.990.000 đ</p>
-                                                        <p>x2</p>
-                                                    </div>
-                                                </li>
+                                    <div className="mini-cart shadow-sm">
+                                        <h3 className="mini-cart-title">Sản phẩm mới thêm</h3>
+                                        <ul className="mini-cart-list">
+                                            <div className="mini-cart-wapper">
+                                                <Link to={`/product/${1}`}>
+                                                    <li className="row mini-cart-item">
+                                                        <div className="col col-3 mini-cart-item-img">
+                                                            <img
+                                                                src={`${process.env.PUBLIC_URL}/images/product-test.jpg`}
+                                                                alt=""
+                                                                className="mini-cart-item-img-data"
+                                                            />
+                                                        </div>
+                                                        <div className="col col-6 mini-cart-item-info">
+                                                            <p>
+                                                                [New 100%] HP Victus 15 fb2063dx 9Z7L4UA - AMD Ryzen
+                                                                5-7535HS | Radeon RX 6550M | 15.6 inch Full HD 144Hz
+                                                            </p>
+                                                        </div>
+                                                        <div className="col col-3 mini-cart-item-price">
+                                                            <p>14.990.000 đ</p>
+                                                            <p>x2</p>
+                                                        </div>
+                                                    </li>
+                                                </Link>
+                                                <Link to={`/product/${2}`}>
+                                                    <li className="row mini-cart-item">
+                                                        <div className="col col-3 mini-cart-item-img">
+                                                            <img
+                                                                src={`${process.env.PUBLIC_URL}/images/product-test.jpg`}
+                                                                alt=""
+                                                                className="mini-cart-item-img-data"
+                                                            />
+                                                        </div>
+                                                        <div className="col col-6 mini-cart-item-info">
+                                                            <p>
+                                                                [New 100%] HP Victus 15 fb2063dx 9Z7L4UA - AMD Ryzen
+                                                                5-7535HS | Radeon RX 6550M | 15.6 inch Full HD 144Hz
+                                                            </p>
+                                                        </div>
+                                                        <div className="col col-3 mini-cart-item-price">
+                                                            <p>14.990.000 đ</p>
+                                                            <p>x2</p>
+                                                        </div>
+                                                    </li>
+                                                </Link>
+                                            </div>
+                                            <Link to={'/user/1/cart'}>
+                                                <button type="button" className="btn btn-outline-secondary">
+                                                    Xem tất cả
+                                                </button>
                                             </Link>
-                                            <Link to={`/product/${2}`}>
-                                                <li className="row mini-cart-item">
-                                                    <div className="col col-3 mini-cart-item-img">
-                                                        <img
-                                                            src={`${process.env.PUBLIC_URL}/images/product-test.jpg`}
-                                                            alt=""
-                                                            className="mini-cart-item-img-data"
-                                                        />
-                                                    </div>
-                                                    <div className="col col-6 mini-cart-item-info">
-                                                        <p>
-                                                            [New 100%] HP Victus 15 fb2063dx 9Z7L4UA - AMD Ryzen
-                                                            5-7535HS | Radeon RX 6550M | 15.6 inch Full HD 144Hz
-                                                        </p>
-                                                    </div>
-                                                    <div className="col col-3 mini-cart-item-price">
-                                                        <p>14.990.000 đ</p>
-                                                        <p>x2</p>
-                                                    </div>
-                                                </li>
-                                            </Link>
-                                        </div>
-                                        <Link to={'/user/1/cart'}>
-                                            <button type="button" className="btn btn-outline-secondary">
-                                                Xem tất cả
-                                            </button>
-                                        </Link>
-                                    </ul>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>

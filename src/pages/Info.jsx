@@ -3,77 +3,70 @@ import Header from '../components/Header';
 import InfoUser from '../components/InfoUser';
 import '../style/info.css';
 import InfoAddress from '../components/InfoAddress';
+import InfoOrder from '../components/InfoOrder';
 
 class Info extends React.Component {
     constructor(props) {
         super(props);
+        const urlParams = new URLSearchParams(window.location.search);
+        const activeTab = urlParams.get('tab') || 'user-info';
         this.state = {
-            name: 'John Doe',
-            age: 30,
-            address: '123 Main St, City, State, ZIP',
+            activeTab,
         };
     }
-
+    componentDidMount() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const activeTab = urlParams.get('tab') || 'user-info';
+        this.setState({ activeTab });
+    }
     render() {
+        const { activeTab } = this.state;
         return (
             <div>
                 <Header />
                 <div className="container">
                     <div className="d-flex mt-3 p-2 align-items-start info-wapper">
                         <div
-                            className="nav flex-column nav-pills me-3 info-control-tab-list"
+                            className="nav col-2 flex-column nav-pills me-3 info-control-tab-list"
                             id="v-pills-tab"
                             role="tablist"
                             aria-orientation="vertical"
                         >
                             <button
-                                className="nav-link active"
+                                className={`nav-link ${activeTab === 'user-info' ? 'active' : ''}`}
                                 id="user-info-tab"
                                 data-bs-toggle="pill"
                                 data-bs-target="#user-info"
                                 type="button"
                                 role="tab"
                                 aria-controls="user-info"
-                                aria-selected="true"
+                                aria-selected={this.state.activeTab === 'user-info'}
                             >
                                 Thông tin
                             </button>
                             <button
-                                className="nav-link"
+                                className={`nav-link ${activeTab === 'user-address' ? 'active' : ''}`}
                                 id="user-address-tab"
                                 data-bs-toggle="pill"
                                 data-bs-target="#user-address"
                                 type="button"
                                 role="tab"
                                 aria-controls="user-address"
-                                aria-selected="false"
+                                aria-selected={this.state.activeTab === 'user-address'}
                             >
                                 Địa chỉ
                             </button>
                             <button
-                                className="nav-link"
-                                id="v-pills-disabled-tab"
+                                className={`nav-link ${activeTab === 'order-history' ? 'active' : ''}`}
+                                id="order-history-tab"
                                 data-bs-toggle="pill"
-                                data-bs-target="#v-pills-disabled"
+                                data-bs-target="#order-history"
                                 type="button"
                                 role="tab"
-                                aria-controls="v-pills-disabled"
-                                aria-selected="false"
-                                disabled
+                                aria-controls="order-history"
+                                aria-selected={this.state.activeTab === 'order-history'}
                             >
-                                Disabled
-                            </button>
-                            <button
-                                className="nav-link"
-                                id="v-pills-messages-tab"
-                                data-bs-toggle="pill"
-                                data-bs-target="#v-pills-messages"
-                                type="button"
-                                role="tab"
-                                aria-controls="v-pills-messages"
-                                aria-selected="false"
-                            >
-                                Messages
+                                Lịch sử mua hàng
                             </button>
                             <button
                                 className="nav-link"
@@ -90,7 +83,7 @@ class Info extends React.Component {
                         </div>
                         <div className="tab-content" id="v-pills-tabContent">
                             <div
-                                className="tab-pane fade show active"
+                                className={`tab-pane fade ${this.state.activeTab === 'user-info' ? 'show active' : ''}`}
                                 id="user-info"
                                 role="tabpanel"
                                 aria-labelledby="user-info-tab"
@@ -99,7 +92,7 @@ class Info extends React.Component {
                                 <InfoUser />
                             </div>
                             <div
-                                className="tab-pane fade"
+                                className={`tab-pane fade ${this.state.activeTab === 'user-address' ? 'show active' : ''}`}
                                 id="user-address"
                                 role="tabpanel"
                                 aria-labelledby="user-address-tab"
@@ -108,22 +101,13 @@ class Info extends React.Component {
                                 <InfoAddress />
                             </div>
                             <div
-                                className="tab-pane fade"
-                                id="v-pills-disabled"
+                                className={`tab-pane fade ${this.state.activeTab === 'order-history' ? 'show active' : ''}`}
+                                id="order-history"
                                 role="tabpanel"
-                                aria-labelledby="v-pills-disabled-tab"
+                                aria-labelledby="order-history-tab"
                                 tabIndex="0"
                             >
-                                ...
-                            </div>
-                            <div
-                                className="tab-pane fade"
-                                id="v-pills-messages"
-                                role="tabpanel"
-                                aria-labelledby="v-pills-messages-tab"
-                                tabIndex="0"
-                            >
-                                ...
+                                <InfoOrder />
                             </div>
                             <div
                                 className="tab-pane fade"
