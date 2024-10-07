@@ -120,3 +120,39 @@
 .order-bottom-pay-method {
     font-weight: 400;
 }
+.comment-product-item {
+    margin-top: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+.comment-product-item:last-child {
+    border-bottom: none;
+}
+.comment-product-item-img img {
+    width: 100%;
+}
+.comment-product-item-name {
+    font-size: 14px;
+}
+.comment-product-item-input {
+    margin-top: 10px;
+}
+.comment-product-item-rating {
+    color: var(--hightligth-text);
+    display: flex;
+    justify-content: space-around;
+    margin: 15px 0;
+}
+.comment-product-item-rating i {
+    margin-top: 5px;
+    font-size: 30px;
+    cursor: pointer;
+}
+.label-comment-input {
+    font-size: 14px;
+}
+.star {
+    font-size: 24px;
+    margin-right: 5px;
+    transition: color 200ms;
+}

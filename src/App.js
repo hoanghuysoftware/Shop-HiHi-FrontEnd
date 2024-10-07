@@ -8,6 +8,8 @@ import Cart from './pages/Cart';
 import CheckOut from './pages/CheckOut';
 import Info from './pages/Info';
 import Order from './pages/Order';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 
 function App() {
     return (
@@ -15,6 +17,8 @@ function App() {
             <div className="App">
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/sign-up" element={<SignUp />} />
                     <Route path="/product-list" element={<Product />} />
                     <Route path="/product/:productId" element={<ProductDetail />} />
                     <Route path="/comment/:productId" element={<Comment />} />

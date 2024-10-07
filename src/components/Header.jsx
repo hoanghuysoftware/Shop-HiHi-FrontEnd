@@ -58,9 +58,9 @@ class Header extends Component {
                                                 <hr className="dropdown-divider" />
                                             </li>
                                             <li>
-                                                <a className="dropdown-item" href="/">
-                                                    Đăng xuất
-                                                </a>
+                                                <Link to={`/login`}>
+                                                    <p className="dropdown-item">Đăng xuất</p>
+                                                </Link>
                                             </li>
                                         </ul>
                                     </div>

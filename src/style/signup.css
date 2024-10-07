@@ -1,0 +1,106 @@
+.sign-up-container {
+    position: relative;
+    padding: 10px;
+}
+.sign-up-content {
+    width: 60%;
+    margin: 10px auto;
+    background: #fff;
+    border-radius: 10px;
+    text-align: left;
+}
+.sign-up-left,
+.sign-up-right {
+    padding: 48px;
+}
+.sign-up-right {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: linear-gradient(135deg, #f75959 0%, #f35587 100%);
+}
+.sign-up-title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 300;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+}
+.sign-up-form {
+    margin-top: 5px;
+}
+.sign-up-form label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.radio-gender {
+    display: flex;
+    align-items: center;
+}
+.radio-gender label {
+    margin-bottom: unset;
+}
+.gender-control {
+    display: flex;
+    align-items: center;
+    margin-left: 40px;
+}
+.sign-up-form button {
+    width: 100%;
+    margin-top: 10px;
+    background: #f35587;
+    border-color: unset;
+    border-radius: 50px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.sign-up-form button:hover {
+    background: #fff;
+    color: #f35587;
+    border-color: #f35587;
+}
+.sign-up-right-content {
+    color: #fff;
+}
+.sign-up-right {
+    position: relative;
+}
+.sign-up-right-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+.sign-up-right-title {
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.sign-up-right-content p {
+    font-size: 16px;
+    margin: 10px 0;
+    text-align: center;
+}
+.sign-up-right-content i {
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    margin: 10px 0 20px;
+    animation: iconHand 2s ease-in-out infinite alternate;
+}
+.sign-up-right-content button {
+    border-radius: 50px;
+    width: 100%;
+    color: #fff;
+    border-color: #fff;
+}
+
+@keyframes iconHand {
+    0% {
+        transform: translateY(-30%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
