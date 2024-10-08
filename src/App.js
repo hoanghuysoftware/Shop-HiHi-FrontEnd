@@ -10,6 +10,9 @@ import Info from './pages/Info';
 import Order from './pages/Order';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+import Search from './pages/Search';
+import Category from './pages/Category';
+import AdminLayout from './admin/AdminLayout';
 
 function App() {
     return (
@@ -19,6 +22,8 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/sign-up" element={<SignUp />} />
+                    <Route path="/search" element={<Search />} />
+                    <Route path="/category" element={<Category />} />
                     <Route path="/product-list" element={<Product />} />
                     <Route path="/product/:productId" element={<ProductDetail />} />
                     <Route path="/comment/:productId" element={<Comment />} />
@@ -26,6 +31,7 @@ function App() {
                     <Route path="/user/:userId/cart" element={<Cart />} />
                     <Route path="/user/:userId/order" element={<CheckOut />} />
                     <Route path="/user/:userId/info" element={<Info />} />
+                    <Route path="/admin" element={<AdminLayout />} />
                 </Routes>
             </div>
         </Router>

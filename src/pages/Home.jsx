@@ -3,6 +3,7 @@ import Product from '../components/common/Product';
 import Header from '../components/Header';
 import SileShow from '../components/SileShow';
 import BackToTop from '../components/common/BackToTop';
+import Navbar from '../components/common/Navbar';
 
 class Home extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class Home extends Component {
         return (
             <div>
                 <Header />
+                <Navbar />
                 <SileShow />
                 <div className="container">
                     <Product />

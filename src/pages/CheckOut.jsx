@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import BackToTop from '../components/common/BackToTop';
 import '../style/checkout.css';
+import Navbar from '../components/common/Navbar';
 
 class CheckOut extends Component {
     constructor(props) {
@@ -18,6 +19,7 @@ class CheckOut extends Component {
             <div>
                 <Header />
                 <div className="container">
+                    <Navbar />
                     <BackToTop />
                     <div className="row gx-3 check-out-body">
                         <div className="col col-6 check-out-left">

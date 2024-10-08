@@ -282,3 +282,8 @@
     width: 100%;
     transition: 0.2s color;
 }
+
+.navbar-container {
+    position: relative;
+    border-bottom: 1px solid #ddd;
+}

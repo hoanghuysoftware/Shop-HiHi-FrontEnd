@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import '../style/cart.css';
 import { Link } from 'react-router-dom';
+import Navbar from '../components/common/Navbar';
 
 class Cart extends Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class Cart extends Component {
             <div>
                 <Header />
                 <div className="container">
+                    <Navbar />
                     <h2 className="cart-title">Giỏ hàng</h2>
                     <div className="row gx-2 cart-row">
                         <div className="col col-8 cart-row-left">
