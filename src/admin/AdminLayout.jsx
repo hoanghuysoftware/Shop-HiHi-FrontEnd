@@ -1,4 +1,6 @@
 import React from 'react';
+import SaleAdmin from './component/SaleAdmin';
+import ProductAdmin from './component/ProductAdmin';
 
 const AdminLayout = () => {
     return (
@@ -16,52 +18,39 @@ const AdminLayout = () => {
                         </div>
                         <button
                             className="nav-link active"
-                            id="v-pills-home-tab"
+                            id="home-tab"
                             data-bs-toggle="pill"
-                            data-bs-target="#v-pills-home"
+                            data-bs-target="#home"
                             type="button"
                             role="tab"
-                            aria-controls="v-pills-home"
+                            aria-controls="home"
                             aria-selected="true"
                         >
-                            Home
+                            Trang chủ
                         </button>
                         <button
                             className="nav-link"
-                            id="v-pills-profile-tab"
+                            id="sale-admin-tab"
                             data-bs-toggle="pill"
-                            data-bs-target="#v-pills-profile"
+                            data-bs-target="#sale-admin"
                             type="button"
                             role="tab"
-                            aria-controls="v-pills-profile"
+                            aria-controls="sale-admin"
                             aria-selected="false"
                         >
-                            Profile
+                            Khuyến mãi
                         </button>
                         <button
                             className="nav-link"
-                            id="v-pills-disabled-tab"
+                            id="product-admin-tab"
                             data-bs-toggle="pill"
-                            data-bs-target="#v-pills-disabled"
+                            data-bs-target="#product-admin"
                             type="button"
                             role="tab"
-                            aria-controls="v-pills-disabled"
-                            aria-selected="false"
-                            disabled
-                        >
-                            Disabled
-                        </button>
-                        <button
-                            className="nav-link"
-                            id="v-pills-messages-tab"
-                            data-bs-toggle="pill"
-                            data-bs-target="#v-pills-messages"
-                            type="button"
-                            role="tab"
-                            aria-controls="v-pills-messages"
+                            aria-controls="product-admin"
                             aria-selected="false"
                         >
-                            Messages
+                            Sản phẩm
                         </button>
                         <button
                             className="nav-link"
@@ -76,42 +65,33 @@ const AdminLayout = () => {
                             Settings
                         </button>
                     </div>
-                    <div className="tab-content" id="v-pills-tabContent">
+                    <div className="tab-content" id="v-pills-tabContent" style={{ width: '100%' }}>
                         <div
                             className="tab-pane fade show active"
-                            id="v-pills-home"
+                            id="home"
                             role="tabpanel"
-                            aria-labelledby="v-pills-home-tab"
+                            aria-labelledby="home-tab"
                             tabindex="0"
                         >
-                            ...
+                            this is home tab
                         </div>
                         <div
                             className="tab-pane fade"
-                            id="v-pills-profile"
+                            id="sale-admin"
                             role="tabpanel"
-                            aria-labelledby="v-pills-profile-tab"
+                            aria-labelledby="sale-admin-tab"
                             tabindex="0"
                         >
-                            ...
+                            <SaleAdmin />
                         </div>
                         <div
                             className="tab-pane fade"
-                            id="v-pills-disabled"
+                            id="product-admin"
                             role="tabpanel"
-                            aria-labelledby="v-pills-disabled-tab"
+                            aria-labelledby="product-admin-tab"
                             tabindex="0"
                         >
-                            ...
-                        </div>
-                        <div
-                            className="tab-pane fade"
-                            id="v-pills-messages"
-                            role="tabpanel"
-                            aria-labelledby="v-pills-messages-tab"
-                            tabindex="0"
-                        >
-                            ...
+                            <ProductAdmin/>
                         </div>
                         <div
                             className="tab-pane fade"
