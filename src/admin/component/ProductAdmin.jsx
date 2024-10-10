@@ -1,5 +1,18 @@
 import React from 'react';
-
+import '../style/product-admin.css';
+import TableProduct from '../utils/TableProduct';
+import FormAddProduct from '../utils/FormAddProduct';
+const productList = [
+    {
+        id: 1,
+        name: '[New 100%] HP Victus 15 fb2063dx 9Z7L4UA - AMD Ryzen 5-7535HS | Radeon RX 6550M | 15.6 inch Full HD 144Hz',
+        image: `${process.env.PUBLIC_URL}/images/product-test.jpg`,
+        price: '14.000.000',
+        quantity: 20,
+        isActive: true,
+    },
+    // Thêm các sản phẩm khác vào đây
+];
 const ProductAdmin = () => {
     return (
         <div className="product-admin-container">
@@ -58,94 +71,40 @@ const ProductAdmin = () => {
                 </nav>
                 <div className="tab-content" id="nav-tabContent">
                     <div
-                        className="tab-pane fade show active"
+                        className="tab-pane fade show active product-list-active"
                         id="home-product"
                         role="tabpanel"
                         aria-labelledby="home-product-tab"
-                        tabindex="0"
+                        tabIndex="0"
                     >
-                        <table className="table table-hover">
-                            <thead className="table-success">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <TableProduct products={productList} status="table-info" />
                     </div>
                     <div
-                        className="tab-pane fade "
+                        className="tab-pane fade product-list-noactive"
                         id="home-product-stop"
                         role="tabpanel"
                         aria-labelledby="home-product-stop-tab"
-                        tabindex="0"
+                        tabIndex="0"
                     >
-                        <table className="table table-hover">
-                            <thead className="table-danger">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <TableProduct products={productList} status="table-danger" />
                     </div>
                     <div
                         className="tab-pane fade"
                         id="add-product"
                         role="tabpanel"
                         aria-labelledby="add-product-tab"
-                        tabindex="0"
+                        tabIndex="0"
                     >
-                        This is add new product
+                        <div className="form-input-add-product">
+                            <FormAddProduct />
+                        </div>
                     </div>
                     <div
                         className="tab-pane fade"
                         id="update-image"
                         role="tabpanel"
                         aria-labelledby="update-image-tab"
-                        tabindex="0"
+                        tabIndex="0"
                     >
                         This is Update images
                     </div>

@@ -1,0 +1,36 @@
+.product-list-active,
+.product-list-noactive {
+    font-size: 16px;
+}
+.product-list-active table,
+.product-list-noactive table {
+    text-align: center;
+}
+.table-product-id {
+    font-weight: 600;
+}
+.table-product-name {
+    display: flex;
+}
+.img-table {
+    width: 50px;
+}
+.table-name-product-active {
+    width: 80%;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.product-list-active table tbody tr td,
+.product-list-noactive table tbody tr td {
+    vertical-align: middle;
+}
+
+.table-status-active {
+    color: green;
+    font-weight: 600;
+}
+.table-status-false {
+    font-weight: 600;
+    color: red;
+}

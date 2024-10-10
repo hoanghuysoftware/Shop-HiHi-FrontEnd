@@ -1,0 +1,8 @@
+.admin-tab-control {
+    background-color: #15161d;
+    height: 100%;
+    position: fixed;
+}
+.admin-tab-content {
+    margin-left: 280px;
+}

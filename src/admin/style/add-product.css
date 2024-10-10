@@ -1,0 +1,47 @@
+.add-product-container {
+    padding: 10px 10px;
+    font-size: 14px;
+}
+
+.add-product-container form label {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    width: 100%;
+    color: #000;
+    cursor: pointer;
+}
+
+.data-receipt-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.data-receipt-list table th {
+    font-size: 16px;
+}
+.data-receipt-list table td {
+    font-size: 14px;
+    cursor: pointer;
+}
+.add-product-table-name {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 50px;
+    text-align: left;
+}
+.btn-import {
+    background: var(--hightligth-text);
+    border-color: unset;
+    border-width: 2px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 30%;
+}
+.btn-import:hover {
+    background: #fff;
+    color: var(--hightligth-text);
+    border-color: var(--hightligth-text);
+}

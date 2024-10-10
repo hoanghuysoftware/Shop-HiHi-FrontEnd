@@ -1,14 +1,17 @@
 import React from 'react';
 import SaleAdmin from './component/SaleAdmin';
 import ProductAdmin from './component/ProductAdmin';
+import './style/admin-layout.css';
+import BackToTop from '../components/common/BackToTop';
 
 const AdminLayout = () => {
     return (
-        <div className="container-fluid">
+        <div className="container-fluid admin-container-custom">
+            <BackToTop />
             <div className="admin-tab">
                 <div className="d-flex align-items-start">
                     <div
-                        className="nav flex-column nav-pills me-3"
+                        className="nav flex-column nav-pills me-3 admin-tab-control"
                         id="v-pills-tab"
                         role="tablist"
                         aria-orientation="vertical"
@@ -65,13 +68,13 @@ const AdminLayout = () => {
                             Settings
                         </button>
                     </div>
-                    <div className="tab-content" id="v-pills-tabContent" style={{ width: '100%' }}>
+                    <div className="tab-content admin-tab-content" id="v-pills-tabContent" style={{ width: '100%' }}>
                         <div
                             className="tab-pane fade show active"
                             id="home"
                             role="tabpanel"
                             aria-labelledby="home-tab"
-                            tabindex="0"
+                            tabIndex="0"
                         >
                             this is home tab
                         </div>
@@ -80,7 +83,7 @@ const AdminLayout = () => {
                             id="sale-admin"
                             role="tabpanel"
                             aria-labelledby="sale-admin-tab"
-                            tabindex="0"
+                            tabIndex="0"
                         >
                             <SaleAdmin />
                         </div>
@@ -89,16 +92,16 @@ const AdminLayout = () => {
                             id="product-admin"
                             role="tabpanel"
                             aria-labelledby="product-admin-tab"
-                            tabindex="0"
+                            tabIndex="0"
                         >
-                            <ProductAdmin/>
+                            <ProductAdmin />
                         </div>
                         <div
                             className="tab-pane fade"
                             id="v-pills-settings"
                             role="tabpanel"
                             aria-labelledby="v-pills-settings-tab"
-                            tabindex="0"
+                            tabIndex="0"
                         >
                             ...
                         </div>

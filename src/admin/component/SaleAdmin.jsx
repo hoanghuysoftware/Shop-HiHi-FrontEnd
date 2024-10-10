@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../style/sale-admin.css';
 
 const SaleAdmin = () => {
     const [sales, setSales] = useState([]);
@@ -13,7 +14,7 @@ const SaleAdmin = () => {
         console.log(newSale);
     };
     return (
-        <div className="sale-admin-container" style={{ width: '100%' }}>
+        <div className="sale-admin-container">
             <div className="sale-admin-content row gx-2">
                 <div className="col col-4 sale-admin-control">
                     <form onSubmit={handleSubmit}>
@@ -83,6 +84,7 @@ const SaleAdmin = () => {
                                 <th scope="col">%</th>
                                 <th scope="col">Ngày bắt đầu</th>
                                 <th scope="col">Ngày kết thúc</th>
+                                <th scope="col" colSpan={2}></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -92,6 +94,12 @@ const SaleAdmin = () => {
                                 <td>15</td>
                                 <td>09-10-2024</td>
                                 <td>09-11-2024</td>
+                                <td>
+                                    <button className="btn btn-warning">Sửa</button>
+                                </td>
+                                <td>
+                                    <button className="btn btn-danger">Xóa</button>
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
@@ -99,6 +107,12 @@ const SaleAdmin = () => {
                                 <td>20</td>
                                 <td>01-10-2024</td>
                                 <td>01-11-2024</td>
+                                <td>
+                                    <button className="btn btn-warning">Sửa</button>
+                                </td>
+                                <td>
+                                    <button className="btn btn-danger">Xóa</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
