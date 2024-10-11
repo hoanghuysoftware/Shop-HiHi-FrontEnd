@@ -2,6 +2,7 @@ import React from 'react';
 import '../style/product-admin.css';
 import TableProduct from '../utils/TableProduct';
 import FormAddProduct from '../utils/FormAddProduct';
+import FormAddImg from '../utils/FormAddImg';
 const productList = [
     {
         id: 1,
@@ -106,7 +107,7 @@ const ProductAdmin = () => {
                         aria-labelledby="update-image-tab"
                         tabIndex="0"
                     >
-                        This is Update images
+                        <FormAddImg/>
                     </div>
                 </div>
             </div>

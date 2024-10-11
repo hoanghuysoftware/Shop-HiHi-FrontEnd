@@ -34,3 +34,11 @@
     font-weight: 600;
     color: red;
 }
+#nav-tab button {
+    color: #000;
+    font-weight: 600;
+    font-size: 18px;
+}
+.tab-content > div {
+    margin-top: 10px;
+}

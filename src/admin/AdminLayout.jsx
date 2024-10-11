@@ -3,10 +3,12 @@ import SaleAdmin from './component/SaleAdmin';
 import ProductAdmin from './component/ProductAdmin';
 import './style/admin-layout.css';
 import BackToTop from '../components/common/BackToTop';
+import OrderAdmin from './component/OrderAdmin';
+import SupplierAdmin from './component/SupplierAdmin';
 
 const AdminLayout = () => {
     return (
-        <div className="container-fluid admin-container-custom">
+        <div className=" admin-container-custom">
             <BackToTop />
             <div className="admin-tab">
                 <div className="d-flex align-items-start">
@@ -57,15 +59,27 @@ const AdminLayout = () => {
                         </button>
                         <button
                             className="nav-link"
-                            id="v-pills-settings-tab"
+                            id="order-admin-tab"
                             data-bs-toggle="pill"
-                            data-bs-target="#v-pills-settings"
+                            data-bs-target="#order-admin"
                             type="button"
                             role="tab"
-                            aria-controls="v-pills-settings"
+                            aria-controls="order-admin"
                             aria-selected="false"
                         >
-                            Settings
+                            Đơn hàng
+                        </button>
+                        <button
+                            className="nav-link"
+                            id="supplier-admin-tab"
+                            data-bs-toggle="pill"
+                            data-bs-target="#supplier-admin"
+                            type="button"
+                            role="tab"
+                            aria-controls="supplier-admin"
+                            aria-selected="false"
+                        >
+                            Nhà cung cấp
                         </button>
                     </div>
                     <div className="tab-content admin-tab-content" id="v-pills-tabContent" style={{ width: '100%' }}>
@@ -98,12 +112,21 @@ const AdminLayout = () => {
                         </div>
                         <div
                             className="tab-pane fade"
-                            id="v-pills-settings"
+                            id="order-admin"
                             role="tabpanel"
-                            aria-labelledby="v-pills-settings-tab"
+                            aria-labelledby="order-admin-tab"
                             tabIndex="0"
                         >
-                            ...
+                            <OrderAdmin />
+                        </div>
+                        <div
+                            className="tab-pane fade"
+                            id="supplier-admin"
+                            role="tabpanel"
+                            aria-labelledby="supplier-admin-tab"
+                            tabIndex="0"
+                        >
+                            <SupplierAdmin />
                         </div>
                     </div>
                 </div>
