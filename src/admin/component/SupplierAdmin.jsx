@@ -16,60 +16,7 @@ const SupplierAdmin = () => {
 
     return (
         <div className="supplier-admin-container">
-            <div className="supplier-admin-content row gx-4">
-                <div className="col col-9 supplier-admin-data">
-                    <h2 className="supplier-admin-titile">Danh sách nhà cung cấp</h2>
-                    <table className="table table-hover table-striped supplier-admin-table">
-                        <thead className="table-info">
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Tên</th>
-                                <th scope="col">E-mail</th>
-                                <th scope="col">Địa chỉ</th>
-                                <th scope="col">SĐT</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>CellphoneS</td>
-                                <td>cellphoneS@gmail.com</td>
-                                <td>350-352 Võ Văn Kiệt, Phường Cô Giang, Quận 1, Thành phố Hồ Chí Minh</td>
-                                <td>028.7108.9666</td>
-                                <td>
-                                    <button type="button" className="btn btn-success btn-update-table">
-                                        Cập nhật
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>CellphoneS</td>
-                                <td>cellphoneS@gmail.com</td>
-                                <td>350-352 Võ Văn Kiệt, Phường Cô Giang, Quận 1, Thành phố Hồ Chí Minh</td>
-                                <td>028.7108.9666</td>
-                                <td>
-                                    <button type="button" className="btn btn-success btn-update-table">
-                                        Cập nhật
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>CellphoneS</td>
-                                <td>cellphoneS@gmail.com</td>
-                                <td>350-352 Võ Văn Kiệt, Phường Cô Giang, Quận 1, Thành phố Hồ Chí Minh</td>
-                                <td>028.7108.9666</td>
-                                <td>
-                                    <button type="button" className="btn btn-success btn-update-table">
-                                        Cập nhật
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div className="supplier-admin-content row gx-4 row-reverse">
                 <div className="col col-3 supplier-admin-form">
                     <h2 className="supplier-admin-titile">Thêm mới nhà cung cấp</h2>
                     <form onSubmit={handleSubmit}>
@@ -125,6 +72,59 @@ const SupplierAdmin = () => {
                             Thêm mới
                         </button>
                     </form>
+                </div>
+                <div className="col col-9 supplier-admin-data">
+                    <h2 className="supplier-admin-titile">Danh sách nhà cung cấp</h2>
+                    <table className="table table-hover table-striped supplier-admin-table">
+                        <thead className="table-info">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Tên</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col">Địa chỉ</th>
+                                <th scope="col">SĐT</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>CellphoneS</td>
+                                <td>cellphoneS@gmail.com</td>
+                                <td>350-352 Võ Văn Kiệt, Phường Cô Giang, Quận 1, Thành phố Hồ Chí Minh</td>
+                                <td>028.7108.9666</td>
+                                <td>
+                                    <button type="button" className="btn btn-success btn-update-table">
+                                        Cập nhật
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>CellphoneS</td>
+                                <td>cellphoneS@gmail.com</td>
+                                <td>350-352 Võ Văn Kiệt, Phường Cô Giang, Quận 1, Thành phố Hồ Chí Minh</td>
+                                <td>028.7108.9666</td>
+                                <td>
+                                    <button type="button" className="btn btn-success btn-update-table">
+                                        Cập nhật
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>CellphoneS</td>
+                                <td>cellphoneS@gmail.com</td>
+                                <td>350-352 Võ Văn Kiệt, Phường Cô Giang, Quận 1, Thành phố Hồ Chí Minh</td>
+                                <td>028.7108.9666</td>
+                                <td>
+                                    <button type="button" className="btn btn-success btn-update-table">
+                                        Cập nhật
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -6,12 +6,16 @@ import BackToTop from '../components/common/BackToTop';
 import OrderAdmin from './component/OrderAdmin';
 import SupplierAdmin from './component/SupplierAdmin';
 import BrandAdmin from './component/BrandAdmin';
+import AccountAdmin from './component/AccountAdmin';
 
 const AdminLayout = () => {
     return (
         <div className=" admin-container-custom">
             <BackToTop />
             <div className="admin-tab">
+                <div className="admin-account-container">
+                    <AccountAdmin />
+                </div>
                 <div className="d-flex align-items-start">
                     <div
                         className="nav flex-column nav-pills me-3 admin-tab-control"
@@ -22,6 +26,7 @@ const AdminLayout = () => {
                         <div className="admin-logo-shop">
                             <img src={`${process.env.PUBLIC_URL}/logo-main.png`} alt="" />
                         </div>
+
                         <button
                             className="nav-link active"
                             id="home-tab"
@@ -32,6 +37,7 @@ const AdminLayout = () => {
                             aria-controls="home"
                             aria-selected="true"
                         >
+                            <i className="mx-3 fa-solid fa-house"></i>
                             Trang chủ
                         </button>
                         <button
@@ -44,6 +50,7 @@ const AdminLayout = () => {
                             aria-controls="sale-admin"
                             aria-selected="false"
                         >
+                            <i className="mx-3 fa-solid fa-coins"></i>
                             Khuyến mãi
                         </button>
                         <button
@@ -56,6 +63,7 @@ const AdminLayout = () => {
                             aria-controls="product-admin"
                             aria-selected="false"
                         >
+                            <i className="mx-3 fa-solid fa-tags"></i>
                             Sản phẩm
                         </button>
                         <button
@@ -68,6 +76,7 @@ const AdminLayout = () => {
                             aria-controls="order-admin"
                             aria-selected="false"
                         >
+                            <i className="mx-3 fa-solid fa-file-invoice-dollar"></i>
                             Đơn hàng
                         </button>
                         <button
@@ -80,6 +89,7 @@ const AdminLayout = () => {
                             aria-controls="supplier-admin"
                             aria-selected="false"
                         >
+                            <i className="mx-3 fa-solid fa-truck-arrow-right"></i>
                             Nhà cung cấp
                         </button>
                         <button
@@ -92,9 +102,11 @@ const AdminLayout = () => {
                             aria-controls="brand-admin"
                             aria-selected="false"
                         >
+                            <i className="mx-3 fa-regular fa-bookmark"></i>
                             Thương hiệu
                         </button>
                     </div>
+
                     <div className="tab-content admin-tab-content" id="v-pills-tabContent" style={{ width: '100%' }}>
                         <div
                             className="tab-pane fade show active"
@@ -148,7 +160,7 @@ const AdminLayout = () => {
                             aria-labelledby="brand-admin-tab"
                             tabIndex="0"
                         >
-                            <BrandAdmin/>
+                            <BrandAdmin />
                         </div>
                     </div>
                 </div>

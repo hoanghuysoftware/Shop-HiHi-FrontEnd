@@ -1,6 +1,5 @@
-.product-list,
-.form-img {
-    padding: 20px 5px;
+.product-list {
+    padding: 20px 0px;
     margin-bottom: 10px;
 }
 .product-list table {
@@ -21,8 +20,18 @@
     color: red;
     font-weight: 500;
 }
-
+.form-img {
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+}
 .form-img form {
-    width: 50%;
+    width: 70%;
     margin: 0 auto;
+}
+.form-img h2 {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 20px;
 }

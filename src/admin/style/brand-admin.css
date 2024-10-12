@@ -1,0 +1,35 @@
+.brand-admin-container {
+    padding: 5px;
+}
+.btn {
+    border-width: 2px;
+}
+.brand-admin-list {
+    padding: 10px;
+}
+.brand-admin-list table {
+    font-size: 15px;
+}
+.brand-admin-list table thead {
+    font-size: 17px;
+}
+.brand-admin-form form {
+    padding: 10px;
+    border: 2px solid var(--hightligth-text);
+    border-radius: 5px;
+}
+.brand-admin-form form h2,
+.brand-admin-list h2 {
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-weight: 600;
+}
+.brand-admin-form form label {
+    width: 100%;
+    text-align: left;
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+}

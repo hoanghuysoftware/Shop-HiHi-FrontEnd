@@ -26,3 +26,8 @@
 .btn-admin-detail-order {
     color: #fff;
 }
+
+.order-admin-table tbody tr td:nth-child(2),
+.order-admin-table thead tr th:nth-child(2) {
+    text-align: left;
+}

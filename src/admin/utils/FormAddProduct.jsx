@@ -67,8 +67,15 @@ const FormAddProduct = () => {
         <div className="add-product-container row">
             <form className="col col-4" style={{ background: '#fff' }} onSubmit={handleAddProduct}>
                 <div className="mb-3">
-                    <label htmlFor="supplier" className="form-label">Nhà cung cấp</label>
-                    <select id="supplier" className="form-select shadow-sm" value={formData.supplier} onChange={handleInputChange}>
+                    <label htmlFor="supplier" className="form-label">
+                        Nhà cung cấp
+                    </label>
+                    <select
+                        id="supplier"
+                        className="form-select shadow-sm"
+                        value={formData.supplier}
+                        onChange={handleInputChange}
+                    >
                         <option value="">-- Chọn nhà cung cấp --</option>
                         <option value="1">Điện máy xanh</option>
                         <option value="2">Phong vũ</option>
@@ -76,8 +83,15 @@ const FormAddProduct = () => {
                     </select>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="brand" className="form-label">Thương hiệu</label>
-                    <select id="brand" className="form-select shadow-sm" value={formData.brand} onChange={handleInputChange}>
+                    <label htmlFor="brand" className="form-label">
+                        Thương hiệu
+                    </label>
+                    <select
+                        id="brand"
+                        className="form-select shadow-sm"
+                        value={formData.brand}
+                        onChange={handleInputChange}
+                    >
                         <option value="">-- Chọn thương hiệu --</option>
                         <option value="1">Asus</option>
                         <option value="2">Dell</option>
@@ -85,8 +99,15 @@ const FormAddProduct = () => {
                     </select>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="sale" className="form-label">Khuyến mãi</label>
-                    <select id="sale" className="form-select shadow-sm" value={formData.sale} onChange={handleInputChange}>
+                    <label htmlFor="sale" className="form-label">
+                        Khuyến mãi
+                    </label>
+                    <select
+                        id="sale"
+                        className="form-select shadow-sm"
+                        value={formData.sale}
+                        onChange={handleInputChange}
+                    >
                         <option value="">-- Chọn khuyến mãi --</option>
                         <option value="1">Khuyến mãi hàng mới</option>
                         <option value="2">Khuyến mãi cuối năm</option>
@@ -94,46 +115,128 @@ const FormAddProduct = () => {
                     </select>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="nameProduct" className="form-label">Tên sản phẩm</label>
-                    <input type="text" className="form-control shadow-sm" id="nameProduct" value={formData.nameProduct} onChange={handleInputChange} />
+                    <label htmlFor="nameProduct" className="form-label">
+                        Tên sản phẩm
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control shadow-sm"
+                        id="nameProduct"
+                        value={formData.nameProduct}
+                        onChange={handleInputChange}
+                    />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="quantity" className="form-label">Số lượng nhập</label>
-                    <input type="number" className="form-control shadow-sm" id="quantity" value={formData.quantity} onChange={handleInputChange} />
+                    <label htmlFor="quantity" className="form-label">
+                        Số lượng nhập
+                    </label>
+                    <input
+                        type="number"
+                        className="form-control shadow-sm"
+                        id="quantity"
+                        value={formData.quantity}
+                        onChange={handleInputChange}
+                    />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="price" className="form-label">Giá nhập</label>
-                    <input type="number" className="form-control shadow-sm" id="price" value={formData.price} onChange={handleInputChange} />
+                    <label htmlFor="price" className="form-label">
+                        Giá nhập
+                    </label>
+                    <input
+                        type="number"
+                        className="form-control shadow-sm"
+                        id="price"
+                        value={formData.price}
+                        onChange={handleInputChange}
+                    />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="screen" className="form-label">Màn hình</label>
-                    <input type="text" className="form-control shadow-sm" id="screen" value={formData.screen} onChange={handleInputChange} />
+                    <label htmlFor="screen" className="form-label">
+                        Màn hình
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control shadow-sm"
+                        id="screen"
+                        value={formData.screen}
+                        onChange={handleInputChange}
+                    />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="cpu" className="form-label">CPU</label>
-                    <input type="text" className="form-control shadow-sm" id="cpu" value={formData.cpu} onChange={handleInputChange} />
+                    <label htmlFor="cpu" className="form-label">
+                        CPU
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control shadow-sm"
+                        id="cpu"
+                        value={formData.cpu}
+                        onChange={handleInputChange}
+                    />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="ram" className="form-label">RAM</label>
-                    <input type="text" className="form-control shadow-sm" id="ram" value={formData.ram} onChange={handleInputChange} />
+                    <label htmlFor="ram" className="form-label">
+                        RAM
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control shadow-sm"
+                        id="ram"
+                        value={formData.ram}
+                        onChange={handleInputChange}
+                    />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="rom" className="form-label">ROM</label>
-                    <input type="text" className="form-control shadow-sm" id="rom" value={formData.rom} onChange={handleInputChange} />
+                    <label htmlFor="rom" className="form-label">
+                        ROM
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control shadow-sm"
+                        id="rom"
+                        value={formData.rom}
+                        onChange={handleInputChange}
+                    />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="card" className="form-label">Card</label>
-                    <input type="text" className="form-control shadow-sm" id="card" value={formData.card} onChange={handleInputChange} />
+                    <label htmlFor="card" className="form-label">
+                        Card
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control shadow-sm"
+                        id="card"
+                        value={formData.card}
+                        onChange={handleInputChange}
+                    />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="description" className="form-label">Mô tả sản phẩm</label>
-                    <textarea className="form-control shadow-sm" id="description" rows="3" value={formData.description} onChange={handleInputChange}></textarea>
+                    <label htmlFor="description" className="form-label">
+                        Mô tả sản phẩm
+                    </label>
+                    <textarea
+                        className="form-control shadow-sm"
+                        id="description"
+                        rows="3"
+                        value={formData.description}
+                        onChange={handleInputChange}
+                    ></textarea>
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Loại sản phẩm</label>
-                    <div className="type-product-list">
-                        {['Văn phòng giá rẻ', 'Văn phòng tầm trung', 'Văn phòng cao cấp', 'Gaming giá rẻ', 'Gaming tầm trung', 'Gaming cao cấp', 'Kỹ thuật giá rẻ', 'Kỹ thuật tầm trung', 'Kỹ thuật cao cấp'].map((type, index) => (
-                            <div className="form-check" key={index}>
+                    <div className="type-product-list d-flex flex-wrap justify-content-start">
+                        {[
+                            'Văn phòng giá rẻ',
+                            'Văn phòng tầm trung',
+                            'Văn phòng cao cấp',
+                            'Gaming giá rẻ',
+                            'Gaming tầm trung',
+                            'Gaming cao cấp',
+                            'Kỹ thuật giá rẻ',
+                            'Kỹ thuật tầm trung',
+                            'Kỹ thuật cao cấp',
+                        ].map((type, index) => (
+                            <div className="form-check flex-fill" key={index}>
                                 <input
                                     className="form-check-input"
                                     type="checkbox"
@@ -148,7 +251,9 @@ const FormAddProduct = () => {
                         ))}
                     </div>
                 </div>
-                <button type="submit" className="btn btn-primary">Thêm vào phiếu nhập</button>
+                <button type="submit" className="btn btn-primary">
+                    Thêm vào phiếu nhập
+                </button>
             </form>
 
             <div className="col col-8 data-receipt-list">
@@ -168,7 +273,7 @@ const FormAddProduct = () => {
                     <tbody>
                         {products.map((product, index) => (
                             <tr key={index}>
-                                <td className='add-product-table-name'>{product.nameProduct}</td>
+                                <td className="add-product-table-name">{product.nameProduct}</td>
                                 <td>{product.price}</td>
                                 <td>{product.quantity}</td>
                                 <td>{product.screen}</td>
@@ -180,7 +285,9 @@ const FormAddProduct = () => {
                         ))}
                     </tbody>
                 </table>
-                <button type="button" className="btn btn-primary btn-import" onClick={handleSubmit}>Nhập hàng</button>
+                <button type="button" className="btn btn-primary btn-import" onClick={handleSubmit}>
+                    Nhập hàng
+                </button>
             </div>
         </div>
     );

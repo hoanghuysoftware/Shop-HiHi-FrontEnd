@@ -4,6 +4,11 @@
     padding: 0 10px;
     background-color: #fff;
 }
+.sale-admin-control h2 {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
 .sale-admin-control form {
     width: 80%;
     text-align: center;

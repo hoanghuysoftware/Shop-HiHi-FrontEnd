@@ -8,9 +8,22 @@ const OrderAdmin = () => {
         { id: 1, user: 'Nguyễn Hoàng Huy', date: '11-10-2024', quantity: 20, value: '14.000.000đ', status: 0 },
     ]);
     const [select, setSelect] = useState(null);
+    const [search, setSearch] = useState('');
     const handleSelectOrder = (order) => {
         setSelect(order);
         // console.log(order.id);
+    };
+    const handChangeInput = (e) => {
+        setSearch(e.target.value);
+        console.log(e.target.value);
+    };
+
+    const handleSubmitSearch = (e) => {
+        e.preventDefault();
+        console.log(search);
+        // Tìm đơn hàng theo ID
+        // const filteredOrders = orders.filter((order) => order.id.toString().includes(search));
+        // setOrders(filteredOrders);
     };
 
     // Hàm xử lý thay đổi trạng thái
@@ -28,10 +41,18 @@ const OrderAdmin = () => {
             <div className="order-admin-content">
                 <div className="order-admin-top">
                     <h2 className="order-admin-title">Danh sách đơn hàng</h2>
-                    <div className="form-floating form-search-order-admin">
-                        <input type="text" className="form-control" id="search-order" placeholder="name@example.com" />
-                        <label htmlFor="search-order">Nhập ID đơn hàng</label>
-                    </div>
+                    <form onSubmit={handleSubmitSearch}>
+                        <div className="mb-3 form-search-order-admin">
+                            <input
+                                type="text"
+                                className="form-control"
+                                value={search}
+                                onChange={handChangeInput}
+                                id="search-order"
+                                placeholder="Nhập ID đơn hàng"
+                            />
+                        </div>
+                    </form>
                 </div>
                 <div className="order-admin-table">
                     <table className="table table-hover">
@@ -72,12 +93,17 @@ const OrderAdmin = () => {
                                     <td>
                                         <button
                                             data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal"
+                                            data-bs-target="#modal-details"
                                             type="button"
                                             className="btn btn-info btn-admin-detail-order"
                                             onClick={(e) => handleSelectOrder(order)}
                                         >
+                                            <i className="me-1 fa-solid fa-pen-to-square"></i>
                                             Xem chi tiết
+                                        </button>
+                                        <button type="button" className="ms-1 btn btn-warning">
+                                            <i className="me-1 fa-solid fa-print"></i>
+                                            In đơn hàng
                                         </button>
                                     </td>
                                 </tr>
@@ -88,15 +114,15 @@ const OrderAdmin = () => {
 
                 <div
                     className="modal fade"
-                    id="exampleModal"
+                    id="modal-details"
                     tabIndex="-1"
-                    aria-labelledby="exampleModalLabel"
+                    aria-labelledby="modal-detailsLabel"
                     aria-hidden="true"
                 >
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h1 className="modal-title fs-5" id="exampleModalLabel">
+                                <h1 className="modal-title fs-5" id="modal-detailsLabel">
                                     Chi tiết đơn hàng
                                 </h1>
                                 <button

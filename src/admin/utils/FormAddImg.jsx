@@ -26,6 +26,41 @@ const FormAddImg = () => {
     return (
         <div className="image-form-container">
             <div className="image-form-content row gx-2">
+                <div className="col col-5 form-img">
+                    <h2>Thêm ảnh cho sản phẩm</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            {/* <label className="input-text" htmlFor="select-id">
+                                Chọn sản phẩm cần thêm ảnh
+                            </label> */}
+                            <select
+                                value={idProduct}
+                                onChange={handleChangeSelection}
+                                className="form-select"
+                                id="select-id"
+                                aria-label="Default select example"
+                            >
+                                <option defaultValue={0}>--- Chọn sản phẩm cần thêm ---</option>
+                                <option value="1">Sản phẩm có 1</option>
+                                <option value="2">Sản phẩm có 2</option>
+                                <option value="3">Sản phẩm có 3</option>
+                            </select>
+                        </div>
+                        <div className="input-group mb-3">
+                            <input
+                                onChange={handleFileChange}
+                                name="files"
+                                type="file"
+                                multiple
+                                className="form-control"
+                                id="img-select"
+                            />
+                        </div>
+                        <button type="submit" className="btn btn-primary">
+                            Lưu ảnh
+                        </button>
+                    </form>
+                </div>
                 <div className="col col-7 product-list">
                     <table className="table table-hover table-striped">
                         <thead className="table-primary">
@@ -60,40 +95,6 @@ const FormAddImg = () => {
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <div className="col col-5 form-img">
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3">
-                            {/* <label className="input-text" htmlFor="select-id">
-                                Chọn sản phẩm cần thêm ảnh
-                            </label> */}
-                            <select
-                                value={idProduct}
-                                onChange={handleChangeSelection}
-                                className="form-select"
-                                id="select-id"
-                                aria-label="Default select example"
-                            >
-                                <option defaultValue={0}>--- Chọn sản phẩm cần thêm ---</option>
-                                <option value="1">Sản phẩm có 1</option>
-                                <option value="2">Sản phẩm có 2</option>
-                                <option value="3">Sản phẩm có 3</option>
-                            </select>
-                        </div>
-                        <div className="input-group mb-3">
-                            <input
-                                onChange={handleFileChange}
-                                name="files"
-                                type="file"
-                                multiple
-                                className="form-control"
-                                id="img-select"
-                            />
-                        </div>
-                        <button type="submit" className="btn btn-primary">
-                            Lưu ảnh
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>

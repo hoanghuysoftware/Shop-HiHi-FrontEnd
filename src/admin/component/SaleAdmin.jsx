@@ -17,6 +17,7 @@ const SaleAdmin = () => {
         <div className="sale-admin-container">
             <div className="sale-admin-content row gx-2">
                 <div className="col col-4 sale-admin-control">
+                    <h2>Form thêm khuyến mãi</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="name-sale" className="form-label">

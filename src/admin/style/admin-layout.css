@@ -2,7 +2,23 @@
     background-color: #15161d;
     height: 100%;
     position: fixed;
+    top: 0;
+    left: 0;
+}
+.admin-tab-control button {
+    text-transform: uppercase;
+    color: var(--hightligth-text);
+    font-weight: 600;
+    text-align: left;
+}
+.admin-tab-control button:hover {
+    background: #d10024;
+    color: #fff;
 }
 .admin-tab-content {
     margin-left: 280px;
+}
+.admin-account-container {
+    width: 100%;
+    display: block;
 }

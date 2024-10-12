@@ -21,7 +21,7 @@
     height: 100%;
     top: 8%;
     border: 0;
-    left: 100%;
+    right: 100%;
     background: var(--hightligth-text);
 }
 
