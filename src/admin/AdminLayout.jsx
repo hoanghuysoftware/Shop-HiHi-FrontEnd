@@ -5,6 +5,7 @@ import './style/admin-layout.css';
 import BackToTop from '../components/common/BackToTop';
 import OrderAdmin from './component/OrderAdmin';
 import SupplierAdmin from './component/SupplierAdmin';
+import BrandAdmin from './component/BrandAdmin';
 
 const AdminLayout = () => {
     return (
@@ -81,6 +82,18 @@ const AdminLayout = () => {
                         >
                             Nhà cung cấp
                         </button>
+                        <button
+                            className="nav-link"
+                            id="brand-admin-tab"
+                            data-bs-toggle="pill"
+                            data-bs-target="#brand-admin"
+                            type="button"
+                            role="tab"
+                            aria-controls="brand-admin"
+                            aria-selected="false"
+                        >
+                            Thương hiệu
+                        </button>
                     </div>
                     <div className="tab-content admin-tab-content" id="v-pills-tabContent" style={{ width: '100%' }}>
                         <div
@@ -127,6 +140,15 @@ const AdminLayout = () => {
                             tabIndex="0"
                         >
                             <SupplierAdmin />
+                        </div>
+                        <div
+                            className="tab-pane fade"
+                            id="brand-admin"
+                            role="tabpanel"
+                            aria-labelledby="brand-admin-tab"
+                            tabIndex="0"
+                        >
+                            <BrandAdmin/>
                         </div>
                     </div>
                 </div>
