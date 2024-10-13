@@ -7,6 +7,7 @@ import OrderAdmin from './component/OrderAdmin';
 import SupplierAdmin from './component/SupplierAdmin';
 import BrandAdmin from './component/BrandAdmin';
 import AccountAdmin from './component/AccountAdmin';
+import HomeAdmin from './component/HomeAdmin';
 
 const AdminLayout = () => {
     return (
@@ -115,7 +116,7 @@ const AdminLayout = () => {
                             aria-labelledby="home-tab"
                             tabIndex="0"
                         >
-                            this is home tab
+                            <HomeAdmin />
                         </div>
                         <div
                             className="tab-pane fade"

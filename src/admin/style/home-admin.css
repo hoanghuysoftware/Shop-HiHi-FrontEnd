@@ -1,0 +1,113 @@
+.home-admin-container {
+    padding: 10px 20px;
+}
+.home-admin-revenue {
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+}
+.revenue-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.revenue-title {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 600;
+}
+.revenue-control {
+    display: flex;
+    font-size: 18px;
+}
+
+.compare-top {
+    padding: 10px;
+    background: #323246;
+    border-radius: 10px;
+    color: #fff;
+    text-align: left;
+    display: flex;
+    padding: 20px 30px;
+    font-size: 16px;
+}
+.compare-month-value {
+    color: red;
+    font-weight: 700;
+    font-size: 24px;
+    text-align: center;
+}
+
+.compare-month-percent {
+    display: flex;
+    font-size: 10px;
+}
+.compare-top-last-month {
+    opacity: 0.5;
+}
+.compare-month-percent span {
+    color: aquamarine;
+    font-weight: 600;
+}
+.compare-month-percent span i {
+    animation: iconCompare 1s ease-in-out infinite alternate;
+}
+
+@keyframes iconCompare {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-20%);
+    }
+}
+
+.compare-bottom {
+    padding: 5px;
+    background: #fff;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.home-product-chart,
+.product-popular-content {
+    background: #fff;
+    border-radius: 10px;
+    padding: 5px;
+}
+.home-product-popular {
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.product-popular-content table tr td {
+    vertical-align: middle;
+    font-size: 17px;
+}
+
+.table-popular {
+    display: flex;
+    align-items: center;
+}
+.table-popular img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+.table-popular p {
+    text-align: left;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.table-popular-price {
+    font-weight: 600;
+    color: var(--hightligth-text);
+}
+.table-popular-amount {
+    color: rgb(51, 204, 51);
+    font-weight: 600;
+}
