@@ -1,20 +1,77 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../style/sale-admin.css';
+import saleService from '../../services/saleService';
+import AlertNotify from '../../components/common/AlertNotify';
 
 const SaleAdmin = () => {
+    const [showAlert, setShowAlert] = useState(true);
+    const [message, setMessage] = useState();
+    const [status, setStatus] = useState();
     const [sales, setSales] = useState([]);
-    const [newSale, setNewSales] = useState({ name: '', amount: '', startDate: '', endDate: '' });
+    const [newSale, setNewSales] = useState({ id: null, name: '', amount: '', startDate: '', endDate: '' });
+
+    const handleCloseAlert = () => {
+        setShowAlert(false);
+    };
 
     const handleChangeInput = (e) => {
         const { name, value } = e.target;
         setNewSales((prevSale) => ({ ...prevSale, [name]: value }));
     };
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(newSale);
+    const fetchSales = async () => {
+        try {
+            const response = await saleService.getAllSales();
+            setSales(response.data);
+        } catch (error) {
+            console.error('Error fetching sales:', error);
+        }
     };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const sale = {
+            id: newSale.id,
+            name: newSale.name,
+            amount: parseInt(newSale.amount),
+            'start-date': newSale.startDate,
+            'end-date': newSale.endDate,
+        };
+        // console.log(sale);
+        try {
+            const response = sale.id
+                ? await saleService.updateSale(sale.id, sale)
+                : await saleService.createNewSale(sale);
+
+            setStatus(response.status);
+            setMessage(response.message);
+            await fetchSales();
+        } catch (error) {
+            console.error('Error create sales:', error);
+        }
+    };
+
+    const handleClickTable = (e) => {
+        setNewSales(e);
+    };
+
+    const handClickDelete = async (id) => {
+        if (window.confirm('Bạn có chắc chắn xóa khuyến mãi này?')) {
+            try {
+                await saleService.deleteSale(id);
+                await fetchSales();
+            } catch (error) {
+                console.error('Error delete sale:', error);
+            }
+        }
+    };
+
+    useEffect(() => {
+        fetchSales();
+    }, []);
+
     return (
         <div className="sale-admin-container">
+            {showAlert && <AlertNotify message={message} duration={5000} status={status} onClose={handleCloseAlert} />}
             <div className="sale-admin-content row gx-2">
                 <div className="col col-4 sale-admin-control">
                     <h2>Form thêm khuyến mãi</h2>
@@ -71,9 +128,19 @@ const SaleAdmin = () => {
                                 id="date-end-sale"
                             />
                         </div>
-                        <button type="submit" className="btn btn-primary">
-                            Thêm mới
-                        </button>
+                        {newSale.id ? (
+                            <button
+                                onClick={() => setShowAlert(true)}
+                                type="submit"
+                                className="btn btn-warning btn-update"
+                            >
+                                Sửa
+                            </button>
+                        ) : (
+                            <button onClick={() => setShowAlert(true)} type="submit" className="btn btn-primary">
+                                Thêm mới
+                            </button>
+                        )}
                     </form>
                 </div>
                 <div className="col col-8 sale-admin-data">
@@ -89,32 +156,25 @@ const SaleAdmin = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Khuyến mãi năm mới</td>
-                                <td>15</td>
-                                <td>09-10-2024</td>
-                                <td>09-11-2024</td>
-                                <td>
-                                    <button className="btn btn-warning">Sửa</button>
-                                </td>
-                                <td>
-                                    <button className="btn btn-danger">Xóa</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Sản phẩm mới</td>
-                                <td>20</td>
-                                <td>01-10-2024</td>
-                                <td>01-11-2024</td>
-                                <td>
-                                    <button className="btn btn-warning">Sửa</button>
-                                </td>
-                                <td>
-                                    <button className="btn btn-danger">Xóa</button>
-                                </td>
-                            </tr>
+                            {sales.map((item, index) => (
+                                <tr key={index}>
+                                    <th scope="row">{item.id}</th>
+                                    <td>{item.name}</td>
+                                    <td>{item.amount}</td>
+                                    <td>{item.startDate}</td>
+                                    <td>{item.endDate}</td>
+                                    <td>
+                                        <button onClick={() => handleClickTable(item)} className="btn btn-warning ">
+                                            Sửa
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button onClick={() => handClickDelete(item.id)} className="btn btn-danger">
+                                            Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

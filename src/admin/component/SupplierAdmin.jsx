@@ -1,18 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../style/supplier-admin.css';
+import supplierService from '../../services/supplierService';
 
 const SupplierAdmin = () => {
-    const [formData, setFormData] = useState({ name: '', email: '', address: '', phone: '' });
+    const [formData, setFormData] = useState({ id: null, name: '', email: '', address: '', phone: '' });
     const [suppliers, setSuppliers] = useState([]);
     const handleChangeInput = (e) => {
         const { name, value } = e.target;
-        setFormData({ [name]: value });
+        setFormData((prevSupplier) => ({ ...prevSupplier, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+        try {
+            if (formData.id) {
+                const response = await supplierService.updateSupplierById(formData.id, formData);
+            } else {
+                const response = await supplierService.createNewSupplier(formData);
+            }
+            await fetchData();
+        } catch (error) {
+            console.error('Error create:', error);
+        }
     };
+
+    const handleClickUpdate = async (item) => {
+        setFormData(item);
+    };
+
+    const fetchData = async () => {
+        try {
+            const response = await supplierService.getAllSuppliers();
+            setSuppliers(response.data);
+        } catch (error) {
+            console.error('Error get all:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     return (
         <div className="supplier-admin-container">
@@ -26,6 +53,7 @@ const SupplierAdmin = () => {
                             </label>
                             <input
                                 onChange={handleChangeInput}
+                                value={formData.name}
                                 name="name"
                                 type="text"
                                 className="form-control shadow-sm"
@@ -38,6 +66,7 @@ const SupplierAdmin = () => {
                             </label>
                             <input
                                 onChange={handleChangeInput}
+                                value={formData.address}
                                 name="address"
                                 type="text"
                                 className="form-control shadow-sm"
@@ -50,6 +79,7 @@ const SupplierAdmin = () => {
                             </label>
                             <input
                                 onChange={handleChangeInput}
+                                value={formData.phone}
                                 name="phone"
                                 type="text"
                                 className="form-control shadow-sm"
@@ -62,15 +92,22 @@ const SupplierAdmin = () => {
                             </label>
                             <input
                                 onChange={handleChangeInput}
+                                value={formData.email}
                                 name="email"
                                 type="email"
                                 className="form-control shadow-sm"
                                 id="email-supplier"
                             />
                         </div>
-                        <button type="submit" className="btn btn-primary btn-supplier-submit">
-                            Thêm mới
-                        </button>
+                        {formData.id ? (
+                            <button type="submit" className="btn btn-warning btn-supplier-submit">
+                                Cập nhật
+                            </button>
+                        ) : (
+                            <button type="submit" className="btn btn-primary btn-supplier-submit">
+                                Thêm mới
+                            </button>
+                        )}
                     </form>
                 </div>
                 <div className="col col-9 supplier-admin-data">
@@ -87,42 +124,24 @@ const SupplierAdmin = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>CellphoneS</td>
-                                <td>cellphoneS@gmail.com</td>
-                                <td>350-352 Võ Văn Kiệt, Phường Cô Giang, Quận 1, Thành phố Hồ Chí Minh</td>
-                                <td>028.7108.9666</td>
-                                <td>
-                                    <button type="button" className="btn btn-success btn-update-table">
-                                        Cập nhật
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>CellphoneS</td>
-                                <td>cellphoneS@gmail.com</td>
-                                <td>350-352 Võ Văn Kiệt, Phường Cô Giang, Quận 1, Thành phố Hồ Chí Minh</td>
-                                <td>028.7108.9666</td>
-                                <td>
-                                    <button type="button" className="btn btn-success btn-update-table">
-                                        Cập nhật
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>CellphoneS</td>
-                                <td>cellphoneS@gmail.com</td>
-                                <td>350-352 Võ Văn Kiệt, Phường Cô Giang, Quận 1, Thành phố Hồ Chí Minh</td>
-                                <td>028.7108.9666</td>
-                                <td>
-                                    <button type="button" className="btn btn-success btn-update-table">
-                                        Cập nhật
-                                    </button>
-                                </td>
-                            </tr>
+                            {suppliers.map((item, index) => (
+                                <tr key={index}>
+                                    <th scope="row">{item.id}</th>
+                                    <td>{item.name}</td>
+                                    <td>{item.email}</td>
+                                    <td>{item.address}</td>
+                                    <td>{item.phone}</td>
+                                    <td>
+                                        <button
+                                            onClick={() => handleClickUpdate(item)}
+                                            type="button"
+                                            className="btn btn-success btn-update-table"
+                                        >
+                                            Cập nhật
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

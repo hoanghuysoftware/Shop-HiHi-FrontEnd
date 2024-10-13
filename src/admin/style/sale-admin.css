@@ -42,3 +42,8 @@
     margin-top: 20px;
     font-size: 16px;
 }
+
+.btn-update {
+    background: #ffc107 !important;
+    color: #000 !important;
+}

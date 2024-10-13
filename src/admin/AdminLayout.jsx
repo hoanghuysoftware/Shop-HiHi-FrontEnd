@@ -8,6 +8,7 @@ import SupplierAdmin from './component/SupplierAdmin';
 import BrandAdmin from './component/BrandAdmin';
 import AccountAdmin from './component/AccountAdmin';
 import HomeAdmin from './component/HomeAdmin';
+import { Link } from 'react-router-dom';
 
 const AdminLayout = () => {
     return (
@@ -24,8 +25,10 @@ const AdminLayout = () => {
                         role="tablist"
                         aria-orientation="vertical"
                     >
-                        <div className="admin-logo-shop">
-                            <img src={`${process.env.PUBLIC_URL}/logo-main.png`} alt="" />
+                        <div className="admin-logo-shop pb-3 pt-2">
+                            <Link to={'/'}>
+                                <img src={`${process.env.PUBLIC_URL}/logo-main.png`} alt="" />
+                            </Link>
                         </div>
 
                         <button

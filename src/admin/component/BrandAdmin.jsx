@@ -1,15 +1,61 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../style/brand-admin.css';
+import brandService from '../../services/brandService';
 
 const BrandAdmin = () => {
-    const [newBrand, setNewBrand] = useState({ name: '' });
+    const [brands, setBrands] = useState([]);
+    const [newBrand, setNewBrand] = useState({ id: null, name: '', active: '' });
+
+    const resetDataForm = () => {
+        setNewBrand({ id: null, name: '', active: '' });
+    };
+
     const handleChangeInput = (e) => {
-        setNewBrand({ name: e.target.value });
+        const { name, value } = e.target;
+        setNewBrand((prev) => ({ ...prev, [name]: value }));
     };
-    const handleSubmit = (e) => {
+    const handleClickUpdate = (item) => {
+        setNewBrand(item);
+        // console.log(item);
+    };
+
+    const handleDelete = async (id) => {
+        try {
+            await brandService.deleteBrand(id);
+            await fetchData();
+        } catch (error) {
+            console.log('Error deleting data', error);
+        }
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(newBrand);
+        const brandDTO = { brand_name: newBrand.name };
+        try {
+            if (newBrand.id) {
+                await brandService.updateBrand(parseInt(newBrand.id), brandDTO);
+            } else {
+                await brandService.createNewBrand(brandDTO);
+            }
+            resetDataForm();
+            await fetchData();
+        } catch (error) {
+            console.log('Error fetching data', error);
+        }
     };
+
+    const fetchData = async () => {
+        try {
+            const response = await brandService.getAllBrand();
+            setBrands(response.data);
+        } catch (error) {
+            console.log('Error fetching data', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
     return (
         <div className="brand-admin-container">
             <div className="brand-admin-content row gx-2">
@@ -24,14 +70,21 @@ const BrandAdmin = () => {
                                 type="text"
                                 className="form-control shadow-sm"
                                 id="name"
-                                name="name-brand"
+                                name="name"
                                 onChange={handleChangeInput}
+                                value={newBrand.name}
                             />
                         </div>
-                        <button type="submit" className="btn btn-outline-success">
-                            <i className="me-1 fa-solid fa-plus"></i>
-                            Thêm mới
-                        </button>
+                        {newBrand.id ? (
+                            <button type="submit" className="btn btn-warning">
+                                Cập nhật
+                            </button>
+                        ) : (
+                            <button type="submit" className="btn btn-outline-success">
+                                <i className="me-1 fa-solid fa-plus"></i>
+                                Thêm mới
+                            </button>
+                        )}
                     </form>
                 </div>
                 <div className="col col-8 brand-admin-list">
@@ -45,34 +98,30 @@ const BrandAdmin = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Asus</td>
-                                <td>
-                                    <button type="button" className="btn btn-warning me-3">
-                                        <i className="fa-regular fa-pen-to-square me-1"></i>
-                                        Cập nhật
-                                    </button>
-                                    <button type="button" className="btn btn-outline-danger">
-                                        <i className="me-1 fa-regular fa-trash-can"></i>
-                                        Xóa
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>HP</td>
-                                <td>
-                                    <button type="button" className="btn btn-warning me-3">
-                                        <i className="fa-regular fa-pen-to-square me-1"></i>
-                                        Cập nhật
-                                    </button>
-                                    <button type="button" className="btn btn-outline-danger">
-                                        <i className="me-1 fa-regular fa-trash-can"></i>
-                                        Xóa
-                                    </button>
-                                </td>
-                            </tr>
+                            {brands.map((item, index) => (
+                                <tr key={index}>
+                                    <th scope="row">{item.id}</th>
+                                    <td>{item.name}</td>
+                                    <td>
+                                        <button
+                                            onClick={() => handleClickUpdate(item)}
+                                            type="button"
+                                            className="btn btn-warning me-3"
+                                        >
+                                            <i className="fa-regular fa-pen-to-square me-1"></i>
+                                            Cập nhật
+                                        </button>
+                                        <button
+                                            onClick={() => handleDelete(item.id)}
+                                            type="button"
+                                            className="btn btn-outline-danger"
+                                        >
+                                            <i className="me-1 fa-regular fa-trash-can"></i>
+                                            Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

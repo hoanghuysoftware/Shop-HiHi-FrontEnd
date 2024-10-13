@@ -45,24 +45,24 @@ const HomeAdmin = () => {
                         <div className="compare-top-this-month me-3">
                             <p className="compare-month-title">Doanh thu tháng này</p>
                             <p className="compare-month-value">14.000.000đ</p>
-                            <p className="compare-month-percent">
+                            <div className="compare-month-percent">
                                 <span>
                                     <i className="me-1 fa-solid fa-arrow-up"></i>
                                     14.5%
                                 </span>
                                 <p className="ms-1">Tăng so với tháng trước</p>
-                            </p>
+                            </div>
                         </div>
                         <div className="compare-top-last-month">
                             <p className="compare-month-title">Doanh thu tháng trước</p>
                             <p className="compare-month-value">14.000.000đ</p>
-                            <p className="compare-month-percent">
+                            <div className="compare-month-percent">
                                 <span>
                                     <i className="me-1 fa-solid fa-arrow-up"></i>
                                     14.5%
                                 </span>
                                 <p className="ms-1">Tăng so với tháng trước</p>
-                            </p>
+                            </div>
                         </div>
                     </div>
                     <div className="compare-bottom shadow">
