@@ -1,20 +1,83 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../style/product-admin.css';
 import TableProduct from '../utils/TableProduct';
 import FormAddProduct from '../utils/FormAddProduct';
 import FormAddImg from '../utils/FormAddImg';
-const productList = [
-    {
-        id: 1,
-        name: '[New 100%] HP Victus 15 fb2063dx 9Z7L4UA - AMD Ryzen 5-7535HS | Radeon RX 6550M | 15.6 inch Full HD 144Hz',
-        image: `${process.env.PUBLIC_URL}/images/product-test.jpg`,
-        price: '14.000.000',
-        quantity: 20,
-        isActive: true,
-    },
-    // Thêm các sản phẩm khác vào đây
-];
+import productService from '../../services/productService';
+import supplierService from '../../services/supplierService';
+import saleService from '../../services/saleService';
+import brandService from '../../services/brandService';
+
 const ProductAdmin = () => {
+    const [productListActive, setProductListActive] = useState([]);
+    const [productListNotActive, setProductListNotActive] = useState([]);
+    const [suppliers, setSupplier] = useState([]);
+    const [sales, setSale] = useState([]);
+    const [brands, setBands] = useState([]);
+
+    const fetchProductListActive = async () => {
+        try {
+            const response = await productService.getAllProductActive();
+            // Add handle for error at here
+            setProductListActive(response.data);
+            // console.log(response.data);
+        } catch (error) {
+            console.log('errors fetch data product active: ' + error);
+        }
+    };
+    const fetchProductListNotActive = async () => {
+        try {
+            const response = await productService.getAllProductNotActive();
+            // Add handle for error at here
+            setProductListNotActive(response.data);
+            // console.log(response.data);
+        } catch (error) {
+            console.log('errors fetch data product active: ' + error);
+        }
+    };
+    const addProductNotImage = (newProduct) => {
+        newProduct.map((item) => {
+            setProductListNotActive((prevProducts) => [...prevProducts, item]);
+        });
+    };
+
+    const fetchSuppliers = async () => {
+        try {
+            const response = await supplierService.getAllSuppliers();
+            setSupplier(response.data);
+        } catch (error) {
+            console.log('errors fetch data supplier: ' + error);
+        }
+    };
+
+    const fetchSales = async () => {
+        try {
+            const response = await saleService.getAllSales();
+            setSale(response.data);
+        } catch (error) {
+            console.log('errors fetch data sale at product-admin: ' + error);
+        }
+    };
+
+    const fetchBrand = async () => {
+        try {
+            const response = await brandService.getAllBrand();
+            setBands(response.data);
+        } catch (error) {
+            console.log('errors fetch data brand at product-admin: ' + error);
+        }
+    };
+
+    console.log(productListNotActive);
+
+    useEffect(() => {
+        fetchProductListActive();
+        fetchProductListNotActive();
+        fetchSuppliers();
+        fetchSales();
+        fetchBrand();
+    }, []);
+
     return (
         <div className="product-admin-container">
             <div className="product-admin-con">
@@ -78,7 +141,7 @@ const ProductAdmin = () => {
                         aria-labelledby="home-product-tab"
                         tabIndex="0"
                     >
-                        <TableProduct products={productList} status="table-info" />
+                        <TableProduct products={productListActive} status="table-info" />
                     </div>
                     <div
                         className="tab-pane fade product-list-noactive"
@@ -87,7 +150,7 @@ const ProductAdmin = () => {
                         aria-labelledby="home-product-stop-tab"
                         tabIndex="0"
                     >
-                        <TableProduct products={productList} status="table-danger" />
+                        <TableProduct products={productListNotActive} status="table-danger" />
                     </div>
                     <div
                         className="tab-pane fade"
@@ -97,7 +160,12 @@ const ProductAdmin = () => {
                         tabIndex="0"
                     >
                         <div className="form-input-add-product">
-                            <FormAddProduct />
+                            <FormAddProduct
+                                listBrand={brands}
+                                listSale={sales}
+                                listSupplier={suppliers}
+                                handleReRenderTable={addProductNotImage}
+                            />
                         </div>
                     </div>
                     <div
@@ -107,7 +175,7 @@ const ProductAdmin = () => {
                         aria-labelledby="update-image-tab"
                         tabIndex="0"
                     >
-                        <FormAddImg/>
+                        <FormAddImg />
                     </div>
                 </div>
             </div>

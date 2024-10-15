@@ -9,16 +9,20 @@ const SupplierAdmin = () => {
         const { name, value } = e.target;
         setFormData((prevSupplier) => ({ ...prevSupplier, [name]: value }));
     };
+    const cleadDataForm = () => {
+        setFormData({ id: null, name: '', email: '', address: '', phone: '' });
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             if (formData.id) {
-                const response = await supplierService.updateSupplierById(formData.id, formData);
+                await supplierService.updateSupplierById(formData.id, formData);
             } else {
-                const response = await supplierService.createNewSupplier(formData);
+                await supplierService.createNewSupplier(formData);
             }
             await fetchData();
+            cleadDataForm();
         } catch (error) {
             console.error('Error create:', error);
         }

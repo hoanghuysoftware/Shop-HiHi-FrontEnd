@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import '../style/add-product.css';
+import stockService from '../../services/stockReceiptService';
 
-const FormAddProduct = () => {
+const FormAddProduct = ({ listBrand, listSale, listSupplier, handleReRenderTable }) => {
     const [formData, setFormData] = useState({
         supplier: '',
         brand: '',
@@ -17,6 +18,23 @@ const FormAddProduct = () => {
         description: '',
         types: [],
     });
+    const clearFormData = () => {
+        setFormData({
+            supplier: '',
+            brand: '',
+            sale: '',
+            nameProduct: '',
+            quantity: '',
+            price: '',
+            screen: '',
+            cpu: '',
+            ram: '',
+            rom: '',
+            card: '',
+            description: '',
+            types: [],
+        });
+    };
 
     const [products, setProducts] = useState([]);
 
@@ -33,6 +51,18 @@ const FormAddProduct = () => {
             const newTypes = checked
                 ? [...prevState.types, typeValue]
                 : prevState.types.filter((type) => type !== typeValue);
+            return { ...prevState, types: newTypes };
+        });
+    };
+
+    const handleCheckboxChange2 = (e) => {
+        const { id, checked } = e.target;
+        const typeValue = parseInt(e.target.value); // Chuyển đổi giá trị từ string sang number
+
+        setFormData((prevState) => {
+            const newTypes = checked
+                ? [...prevState.types, typeValue] // Thêm giá trị số
+                : prevState.types.filter((type) => type !== typeValue); // Xóa giá trị số
             return { ...prevState, types: newTypes };
         });
     };
@@ -58,9 +88,35 @@ const FormAddProduct = () => {
         console.log('Product added temporarily:', formData);
     };
 
-    const handleSubmit = () => {
-        console.log('Submitting all products:', products);
-        // Thực hiện logic gửi dữ liệu lên server tại đây
+    const handleSubmit = async () => {
+        const dataPost = {
+            'supplier-id': parseInt(products[0].supplier),
+            stockReceiptDetailDTOS: products.map((product) => ({
+                quantity: product.quantity,
+                'unit-price': product.price,
+                productDTO: {
+                    name: product.nameProduct,
+                    description: product.description,
+                    cpu: product.cpu,
+                    ram: product.ram,
+                    rom: product.rom,
+                    card: product.card,
+                    screen: product.screen,
+                    'brand-id': parseInt(product.brand),
+                    'discount-id': parseInt(product.sale),
+                    'type-product-id': product.types,
+                },
+            })),
+        };
+        console.log(dataPost);
+        try {
+            // Sau khi thêm thành công thì hiện 1 cái alert tại đây
+            await stockService.createReceiptForNewProduct(dataPost);
+            handleReRenderTable(dataPost);
+            clearFormData();
+        } catch (error) {
+            console.log('error at form add product for new product: ' + error);
+        }
     };
 
     return (
@@ -77,9 +133,11 @@ const FormAddProduct = () => {
                         onChange={handleInputChange}
                     >
                         <option value="">-- Chọn nhà cung cấp --</option>
-                        <option value="1">Điện máy xanh</option>
-                        <option value="2">Phong vũ</option>
-                        <option value="3">F88 shop</option>
+                        {listSupplier.map((item) => (
+                            <option key={item.id} value={item.id}>
+                                {item.name}
+                            </option>
+                        ))}
                     </select>
                 </div>
                 <div className="mb-3">
@@ -93,9 +151,11 @@ const FormAddProduct = () => {
                         onChange={handleInputChange}
                     >
                         <option value="">-- Chọn thương hiệu --</option>
-                        <option value="1">Asus</option>
-                        <option value="2">Dell</option>
-                        <option value="3">MSI</option>
+                        {listBrand.map((item) => (
+                            <option key={item.id} value={item.id}>
+                                {item.name}
+                            </option>
+                        ))}
                     </select>
                 </div>
                 <div className="mb-3">
@@ -109,9 +169,11 @@ const FormAddProduct = () => {
                         onChange={handleInputChange}
                     >
                         <option value="">-- Chọn khuyến mãi --</option>
-                        <option value="1">Khuyến mãi hàng mới</option>
-                        <option value="2">Khuyến mãi cuối năm</option>
-                        <option value="3">Khuyến mãi đầu năm</option>
+                        {listSale.map((item) => (
+                            <option key={item.id} value={item.id}>
+                                {item.name}
+                            </option>
+                        ))}
                     </select>
                 </div>
                 <div className="mb-3">
@@ -240,9 +302,9 @@ const FormAddProduct = () => {
                                 <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    value={type}
+                                    value={index + 1}
                                     id={`type-product-check${index}`}
-                                    onChange={handleCheckboxChange}
+                                    onChange={handleCheckboxChange2}
                                 />
                                 <label className="form-check-label" htmlFor={`type-product-check${index}`}>
                                     {type}

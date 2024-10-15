@@ -10,6 +10,10 @@ const SaleAdmin = () => {
     const [sales, setSales] = useState([]);
     const [newSale, setNewSales] = useState({ id: null, name: '', amount: '', startDate: '', endDate: '' });
 
+    const clearDataForm = () => {
+        setNewSales({ id: null, name: '', amount: '', startDate: '', endDate: '' });
+    };
+
     const handleCloseAlert = () => {
         setShowAlert(false);
     };
@@ -45,6 +49,7 @@ const SaleAdmin = () => {
             setStatus(response.status);
             setMessage(response.message);
             await fetchSales();
+            clearDataForm();
         } catch (error) {
             console.error('Error create sales:', error);
         }

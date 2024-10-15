@@ -46,7 +46,7 @@ const BrandAdmin = () => {
 
     const fetchData = async () => {
         try {
-            const response = await brandService.getAllBrand();
+            const response = await brandService.getAllBrandAdmin();
             setBrands(response.data);
         } catch (error) {
             console.log('Error fetching data', error);
@@ -94,6 +94,7 @@ const BrandAdmin = () => {
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Tên thương hiệu</th>
+                                <th scope="col">Trạng thái</th>
                                 <th scope="col">Xử lý</th>
                             </tr>
                         </thead>
@@ -102,6 +103,11 @@ const BrandAdmin = () => {
                                 <tr key={index}>
                                     <th scope="row">{item.id}</th>
                                     <td>{item.name}</td>
+                                    {item.active === true ? (
+                                        <td style={{ color: 'green', fontWeight: '600' }}>Active</td>
+                                    ) : (
+                                        <td style={{ color: 'red', fontWeight: '800' }}>Not Active</td>
+                                    )}
                                     <td>
                                         <button
                                             onClick={() => handleClickUpdate(item)}
