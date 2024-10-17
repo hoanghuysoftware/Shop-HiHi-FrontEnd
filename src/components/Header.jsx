@@ -258,7 +258,7 @@ const Header = () => {
                                                 </li>
                                             </Link>
                                         </div>
-                                        <Link to={'/user/1/cart'}>
+                                        <Link to={'/user/2/cart'}>
                                             <button type="button" className="btn btn-outline-secondary">
                                                 Xem tất cả
                                             </button>

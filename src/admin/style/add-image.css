@@ -1,9 +1,10 @@
 .product-list {
     padding: 20px 0px;
     margin-bottom: 10px;
+    position: relative;
 }
 .product-list table {
-    font-size: 16px;
+    font-size: 14px;
     vertical-align: middle !important;
 }
 .product-list table thead th {

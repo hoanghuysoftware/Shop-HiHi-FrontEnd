@@ -11,7 +11,9 @@
     color: #000;
     cursor: pointer;
 }
-
+.data-receipt-list {
+    position: relative;
+}
 .data-receipt-list table {
     width: 100%;
     border-collapse: collapse;

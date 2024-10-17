@@ -11,6 +11,7 @@ import brandService from '../../services/brandService';
 const ProductAdmin = () => {
     const [productListActive, setProductListActive] = useState([]);
     const [productListNotActive, setProductListNotActive] = useState([]);
+    const [productNotImage, setProductNotImage] = useState([]);
     const [suppliers, setSupplier] = useState([]);
     const [sales, setSale] = useState([]);
     const [brands, setBands] = useState([]);
@@ -35,10 +36,25 @@ const ProductAdmin = () => {
             console.log('errors fetch data product active: ' + error);
         }
     };
+    const fetchProductListNotImage = async () => {
+        try {
+            const response = await productService.getAllProductNotImage();
+            // Add handle for error at here
+            setProductNotImage(response.data);
+            // console.log(response.data);
+        } catch (error) {
+            console.log('errors fetch data product active: ' + error);
+        }
+    };
+
     const addProductNotImage = (newProduct) => {
         newProduct.map((item) => {
             setProductListNotActive((prevProducts) => [...prevProducts, item]);
         });
+    };
+
+    const addImageForProduct = () => {
+        fetchProductListActive();
     };
 
     const fetchSuppliers = async () => {
@@ -68,11 +84,10 @@ const ProductAdmin = () => {
         }
     };
 
-    console.log(productListNotActive);
-
     useEffect(() => {
         fetchProductListActive();
         fetchProductListNotActive();
+        fetchProductListNotImage();
         fetchSuppliers();
         fetchSales();
         fetchBrand();
@@ -175,7 +190,7 @@ const ProductAdmin = () => {
                         aria-labelledby="update-image-tab"
                         tabIndex="0"
                     >
-                        <FormAddImg />
+                        <FormAddImg products={productNotImage} handleUpdateTable={addImageForProduct} />
                     </div>
                 </div>
             </div>

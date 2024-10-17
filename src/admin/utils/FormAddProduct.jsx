@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../style/add-product.css';
 import stockService from '../../services/stockReceiptService';
+import AlertUtils from './Alert';
 
 const FormAddProduct = ({ listBrand, listSale, listSupplier, handleReRenderTable }) => {
     const [formData, setFormData] = useState({
@@ -37,23 +38,24 @@ const FormAddProduct = ({ listBrand, listSale, listSupplier, handleReRenderTable
     };
 
     const [products, setProducts] = useState([]);
+    const [alert, setAlert] = useState({ message: '', status: 0, visible: false });
 
     const handleInputChange = (e) => {
         const { id, value } = e.target;
         setFormData({ ...formData, [id]: value });
     };
 
-    const handleCheckboxChange = (e) => {
-        const { id, checked } = e.target;
-        const typeValue = e.target.nextSibling.textContent;
+    // const handleCheckboxChange = (e) => {
+    //     const { id, checked } = e.target;
+    //     const typeValue = e.target.nextSibling.textContent;
 
-        setFormData((prevState) => {
-            const newTypes = checked
-                ? [...prevState.types, typeValue]
-                : prevState.types.filter((type) => type !== typeValue);
-            return { ...prevState, types: newTypes };
-        });
-    };
+    //     setFormData((prevState) => {
+    //         const newTypes = checked
+    //             ? [...prevState.types, typeValue]
+    //             : prevState.types.filter((type) => type !== typeValue);
+    //         return { ...prevState, types: newTypes };
+    //     });
+    // };
 
     const handleCheckboxChange2 = (e) => {
         const { id, checked } = e.target;
@@ -108,14 +110,22 @@ const FormAddProduct = ({ listBrand, listSale, listSupplier, handleReRenderTable
                 },
             })),
         };
-        console.log(dataPost);
         try {
-            // Sau khi thêm thành công thì hiện 1 cái alert tại đây
             await stockService.createReceiptForNewProduct(dataPost);
+            // Sau khi thêm thành công thì hiện 1 cái alert tại đây
+            setAlert({ message: 'Nhập hàng thành công', status: 200, visible: true });
+            setTimeout(() => {
+                setAlert({ ...alert, visible: false });
+            }, 1500);
+
             handleReRenderTable(dataPost);
             clearFormData();
         } catch (error) {
             console.log('error at form add product for new product: ' + error);
+            setAlert({ message: 'Lỗi khi nhập hàng', status: 400, visible: true });
+            setTimeout(() => {
+                setAlert({ ...alert, visible: false });
+            }, 1500);
         }
     };
 
@@ -319,6 +329,7 @@ const FormAddProduct = ({ listBrand, listSale, listSupplier, handleReRenderTable
             </form>
 
             <div className="col col-8 data-receipt-list">
+                {alert.visible && <AlertUtils message={alert.message} status={alert.status} />}
                 <table className="table table-hover">
                     <thead className="table-info">
                         <tr>

@@ -1,31 +1,50 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import Product from '../components/common/Product';
 import Header from '../components/Header';
 import SileShow from '../components/SileShow';
 import BackToTop from '../components/common/BackToTop';
 import Navbar from '../components/common/Navbar';
+import brandService from '../services/brandService';
+import { Link } from 'react-router-dom';
 
-class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            products: [],
-        };
-    }
+const Home = () => {
+    const [listBrand, setBrand] = useState([]);
+    const fetchBrand = async () => {
+        try {
+            const response = await brandService.getAllBrand();
+            setBrand(response.data);
+        } catch (error) {
+            console.log('Error fetching brand at home page', error);
+        }
+    };
 
-    render() {
-        return (
-            <div>
-                <Header />
-                <Navbar />
-                <SileShow />
-                <div className="container">
-                    <Product />
-                    <BackToTop />
-                </div>
+    useEffect(() => {
+        fetchBrand();
+    }, []);
+    return (
+        <div>
+            <Header />
+            <Navbar />
+            <SileShow />
+            <div className="container">
+                {listBrand.map((item) => (
+                    <div key={item.id}>
+                        <div className="d-flex justify-content-between align-items-end">
+                            <h2 className="fw-bold mt-2 text-uppercase fs-4 text-start home-title">{item.name}</h2>
+                            <Link
+                                className="fst-italic fs-6 link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                                to={`category?category-name=${item.name}`}
+                            >
+                                Xem thêm
+                            </Link>
+                        </div>
+                        <Product brandId={item.id} size={5} />
+                    </div>
+                ))}
+                <BackToTop />
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 export default Home;
