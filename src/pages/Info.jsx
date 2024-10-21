@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../components/Header';
 import InfoUser from '../components/InfoUser';
 import '../style/info.css';
 import InfoAddress from '../components/InfoAddress';
@@ -23,7 +22,6 @@ class Info extends React.Component {
         const { activeTab } = this.state;
         return (
             <div>
-                <Header />
                 <div className="container">
                     <div className="d-flex mt-3 p-2 align-items-start info-wapper">
                         <div

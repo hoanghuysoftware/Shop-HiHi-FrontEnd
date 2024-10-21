@@ -13,11 +13,32 @@ import SignUp from './pages/SignUp';
 import Search from './pages/Search';
 import Category from './pages/Category';
 import AdminLayout from './admin/AdminLayout';
+import { setCart, setItemForOrder, setQuantity } from './redux/actions/CartAction';
+import { setSearch } from './redux/actions/SearchAction';
+// import { login, logout } from './redux/actions/UserAction';
+import { useDispatch } from 'react-redux';
+import cartService from './services/cartService';
+import { useEffect } from 'react';
+import Header from './components/Header';
 
 function App() {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        const fetchCart = async () => {
+            const response = await cartService.getCart(2);
+            dispatch(setCart(response.data.shoppingCartDetails));
+            dispatch(setQuantity(response.data.totalQuantity));
+            dispatch(setItemForOrder([]));
+            dispatch(setSearch(''));
+        };
+
+        fetchCart();
+    }, [dispatch]);
+
     return (
         <Router>
             <div className="App">
+                <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import '../style/category.css';
 import { useSearchParams } from 'react-router-dom';
-import Header from '../components/Header';
 import Navbar from '../components/common/Navbar';
 import Product from '../components/common/Product';
 import Pagination from '../components/common/Pagination';
@@ -14,11 +13,11 @@ const Category = (e) => {
 
     const handleClickButton = (e) => {
         setActive(e);
+        console.log(keyword);
     };
 
     return (
         <div>
-            <Header />
             <Navbar />
             <div className="container">
                 <BackToTop />

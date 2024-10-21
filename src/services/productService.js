@@ -72,6 +72,16 @@ const getProductByBrandid = async (id, page, size) => {
     }
 };
 
+const searchProduct = async (page, keyword) => {
+    try {
+        const response = await axios.get(`${API_URL}/search?keyword=${keyword}&page=${page}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error search product by: ', error);
+        throw error;
+    }
+};
+
 const productService = {
     getAllProductActive,
     getAllProductNotActive,
@@ -80,6 +90,7 @@ const productService = {
     updateImageForProduct,
     getProductByBrandid,
     getImagesByIdProduct,
+    searchProduct,
 };
 
 export default productService;

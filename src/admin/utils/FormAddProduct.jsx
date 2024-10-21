@@ -58,13 +58,14 @@ const FormAddProduct = ({ listBrand, listSale, listSupplier, handleReRenderTable
     // };
 
     const handleCheckboxChange2 = (e) => {
-        const { id, checked } = e.target;
+        const { checked } = e.target;
         const typeValue = parseInt(e.target.value); // Chuyển đổi giá trị từ string sang number
 
         setFormData((prevState) => {
             const newTypes = checked
                 ? [...prevState.types, typeValue] // Thêm giá trị số
                 : prevState.types.filter((type) => type !== typeValue); // Xóa giá trị số
+
             return { ...prevState, types: newTypes };
         });
     };

@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import '../style/productdetail.css';
 import Product from '../components/common/Product';
 import BackToTop from '../components/common/BackToTop';
-import Header from '../components/Header';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import productService from '../services/productService';
 import cartService from '../services/cartService';
+import reviewService from '../services/reviewService';
+import Loadding from '../components/common/Loadding';
 
 const ProductDetail = () => {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ const ProductDetail = () => {
     const [product, setProduct] = useState(null);
     const [listImages, setListImages] = useState([]);
     const [quantity, setQuantity] = useState(1);
+    const [review, setReview] = useState([]);
 
     const fetchProduct = async (idProduct) => {
         try {
@@ -33,6 +35,15 @@ const ProductDetail = () => {
         }
     };
 
+    const fetchDataReview = async (idProduct) => {
+        try {
+            const response = await reviewService.getAllReviewByProductId(idProduct);
+            setReview(response.data.reverse());
+        } catch (error) {
+            console.log('Error fetch review from Product Details: ' + error.message);
+        }
+    };
+
     const handleImagesBase64 = (image) => {
         if (image !== undefined) return `data:image/jpeg;base64,${image}`;
     };
@@ -41,13 +52,15 @@ const ProductDetail = () => {
         window.scrollTo(0, 0);
         fetchProduct(idProduct);
         fetchImages(idProduct);
+        fetchDataReview(idProduct);
     }, [idProduct]);
+    console.log(review);
 
     if (!product) {
-        return <div>Loading...</div>;
+        return <Loadding />;
     }
     if (!listImages.length === 0) {
-        return <div>Loading...</div>;
+        return <Loadding />;
     }
 
     const handleChangeInput = (e) => {
@@ -76,7 +89,6 @@ const ProductDetail = () => {
 
     return (
         <div>
-            <Header />
             <div className="container">
                 <BackToTop />
                 <div className="product-detail">
@@ -241,7 +253,7 @@ const ProductDetail = () => {
                             </h3>
                             <div className="product-detail-info-content">
                                 <h1>{product.name}</h1>
-                                <p>{product.description}</p>
+                                <p style={{ textAlign: 'justify' }}>{product.description}</p>
                             </div>
                         </div>
                         <div className="product-detail-info-right col col-4">
@@ -307,57 +319,21 @@ const ProductDetail = () => {
                     <div className="product-detail-comment col col-8">
                         <h3 className="product-detail-same-title">Đánh giá của sản phẩm {product.name}</h3>
                         <div className="product-detail-comment-list">
-                            <div className="product-detail-comment-item">
-                                <div className="comment-top">
-                                    <h4 className="comment-user-name">Hoàng Huy</h4>
-                                    <div className="comment-date">25-05-2024</div>
+                            {review.map((item, index) => (
+                                <div key={index} className="product-detail-comment-item">
+                                    <div className="comment-top">
+                                        <h4 className="comment-user-name">{item.nameCustomer}</h4>
+                                        <div className="comment-date">{item.dateTime}</div>
+                                    </div>
+                                    <div className="comment-rating">
+                                        {Array.from({ length: item.rating }, (_, index) => (
+                                            <i key={index} className="fa-solid fa-star"></i>
+                                        ))}
+                                        {/* <i className="fa-regular fa-star-half-stroke"></i> */}
+                                    </div>
+                                    <p className="comment-content">{item.content}</p>
                                 </div>
-                                <div className="comment-rating">
-                                    <i className="fa-solid fa-star"></i>
-                                    <i className="fa-solid fa-star"></i>
-                                    <i className="fa-solid fa-star"></i>
-                                    <i className="fa-solid fa-star"></i>
-                                    <i className="fa-regular fa-star-half-stroke"></i>
-                                </div>
-                                <p className="comment-content">
-                                    Laptop này đ��p và giá cả tốt. Tuy nhiên, có v�� nh�� hơn so với laptop của mình.
-                                    Mình ngh�� nên sử dụng cho người đã có laptop c��.
-                                </p>
-                            </div>
-                            <div className="product-detail-comment-item">
-                                <div className="comment-top">
-                                    <h4 className="comment-user-name">Hoàng Huy</h4>
-                                    <div className="comment-date">25-05-2024</div>
-                                </div>
-                                <div className="comment-rating">
-                                    <i className="fa-solid fa-star"></i>
-                                    <i className="fa-solid fa-star"></i>
-                                    <i className="fa-solid fa-star"></i>
-                                    <i className="fa-solid fa-star"></i>
-                                    <i className="fa-regular fa-star-half-stroke"></i>
-                                </div>
-                                <p className="comment-content">
-                                    Laptop này đ��p và giá cả tốt. Tuy nhiên, có v�� nh�� hơn so với laptop của mình.
-                                    Mình ngh�� nên sử dụng cho người đã có laptop c��.
-                                </p>
-                            </div>
-                            <div className="product-detail-comment-item">
-                                <div className="comment-top">
-                                    <h4 className="comment-user-name">Hoàng Huy</h4>
-                                    <div className="comment-date">25-05-2024</div>
-                                </div>
-                                <div className="comment-rating">
-                                    <i className="fa-solid fa-star"></i>
-                                    <i className="fa-solid fa-star"></i>
-                                    <i className="fa-solid fa-star"></i>
-                                    <i className="fa-solid fa-star"></i>
-                                    <i className="fa-regular fa-star-half-stroke"></i>
-                                </div>
-                                <p className="comment-content">
-                                    Laptop này đ��p và giá cả tốt. Tuy nhiên, có v�� nh�� hơn so với laptop của mình.
-                                    Mình ngh�� nên sử dụng cho người đã có laptop c��.
-                                </p>
-                            </div>
+                            ))}
                         </div>
                         <div className="comment-control">
                             <Link to={`/comment/${product.id}`}>

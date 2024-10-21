@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import '../style/login.css';
 import { useNavigate } from 'react-router-dom';
+// import userService from '../services/userService';
+// import { login } from '../redux/actions/UserAction';
+// import { useDispatch } from 'react-redux';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    // const [user, setUser] = useState('');
     const navigate = useNavigate();
+    // const dispatch = useDispatch();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -17,9 +22,16 @@ const Login = () => {
         navigate('/sign-up');
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(username + ' ' + password);
+        console.log(username + password);
+        // try {
+        //     const response = await userService.getUserById(2);
+        //     // setUser(response.data);
+        //     dispatch(login(response.data));
+        // } catch (error) {
+        //     console.log('Error when load user at Login.jsx: ' + error);
+        // }
         navigate('/');
     };
 

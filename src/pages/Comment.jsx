@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../style/comment.css';
-import Header from '../components/Header';
 import BackToTop from '../components/common/BackToTop';
 import { Link } from 'react-router-dom';
 
@@ -29,7 +28,6 @@ class Comment extends Component {
         const { product } = this.state;
         return (
             <div>
-                <Header />
                 <div className="container">
                     <BackToTop />
                     <div className="comment-body row">

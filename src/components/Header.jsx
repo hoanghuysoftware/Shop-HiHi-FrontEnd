@@ -1,14 +1,31 @@
 import React, { useState } from 'react';
 import '../style/header.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+// import { setSearch } from '../redux/actions/SearchAction';
 
 const Header = () => {
     const [keyword, setKeyword] = useState('');
+    // const dispatch = useDispatch();
+    const products = useSelector((state) => state.cart.items); // Lấy danh sách sản phẩm từ Redux store
+    const totalQuantity = useSelector((state) => state.cart.totalQuantity); // L
+    // const key2 = useSelector((state) => state.search.keyword);
+
     const navigate = useNavigate();
-    const handleSearch = (e) => {
-        e.preventDefault();
-        navigate(`/search?keyword=${keyword}`);
+    // const handleSearch = (e) => {
+    //     e.preventDefault();
+    //     navigate(`/search?keyword=${keyword}`);
+    // };
+
+    const handChangeSearch = (e) => {
+        setKeyword(e.target.value);
+        navigate(`/search?keyword=${e.target.value}`);
     };
+
+    const handleImagesBase64 = (image) => {
+        if (image !== undefined) return `data:image/jpeg;base64,${image}`;
+    };
+
     return (
         <header>
             <div className="header-top">
@@ -42,12 +59,12 @@ const Header = () => {
                                     </button>
                                     <ul className="dropdown-menu">
                                         <li>
-                                            <Link to={`/user/${1}/info`}>
+                                            <Link to={`/user/${2}/info`}>
                                                 <p className="dropdown-item">Tài khoản của tôi</p>
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link to={`/user/${1}/info?tab=order-history`}>
+                                            <Link to={`/user/${2}/info?tab=order-history`}>
                                                 <p className="dropdown-item">Đơn mua</p>
                                             </Link>
                                         </li>
@@ -189,14 +206,14 @@ const Header = () => {
                         </div>
                         <div className="p-2 col-md-6 header-search">
                             <div className="search-wapper">
-                                <form onSubmit={handleSearch} className="d-flex" role="search">
+                                <form className="d-flex" role="search">
                                     <input
                                         className="search-form form-control me-2"
                                         type="search"
                                         placeholder="Nhập từ khóa cần tìm"
                                         aria-label="Search"
                                         value={keyword}
-                                        onChange={(e) => setKeyword(e.target.value)}
+                                        onChange={handChangeSearch}
                                     />
                                     <button className="search-btn btn btn-outline-success" type="submit">
                                         Tìm kiếm
@@ -208,55 +225,33 @@ const Header = () => {
                             <div className="header-cart ">
                                 <div className="cart-wapper">
                                     <i className="cart-icon fa-solid fa-cart-shopping"></i>
-                                    <span className="cart-number">5</span>
+                                    <span className="cart-number">{totalQuantity}</span>
                                 </div>
 
-                                <div className="mini-cart shadow-sm">
+                                <div className="mini-cart shadow">
                                     <h3 className="mini-cart-title">Sản phẩm mới thêm</h3>
                                     <ul className="mini-cart-list">
                                         <div className="mini-cart-wapper">
-                                            <Link to={`/product/${1}`}>
-                                                <li className="row mini-cart-item">
-                                                    <div className="col col-3 mini-cart-item-img">
-                                                        <img
-                                                            src={`${process.env.PUBLIC_URL}/images/product-test.jpg`}
-                                                            alt=""
-                                                            className="mini-cart-item-img-data"
-                                                        />
-                                                    </div>
-                                                    <div className="col col-6 mini-cart-item-info">
-                                                        <p>
-                                                            [New 100%] HP Victus 15 fb2063dx 9Z7L4UA - AMD Ryzen
-                                                            5-7535HS | Radeon RX 6550M | 15.6 inch Full HD 144Hz
-                                                        </p>
-                                                    </div>
-                                                    <div className="col col-3 mini-cart-item-price">
-                                                        <p>14.990.000 đ</p>
-                                                        <p>x2</p>
-                                                    </div>
-                                                </li>
-                                            </Link>
-                                            <Link to={`/product/${2}`}>
-                                                <li className="row mini-cart-item">
-                                                    <div className="col col-3 mini-cart-item-img">
-                                                        <img
-                                                            src={`${process.env.PUBLIC_URL}/images/product-test.jpg`}
-                                                            alt=""
-                                                            className="mini-cart-item-img-data"
-                                                        />
-                                                    </div>
-                                                    <div className="col col-6 mini-cart-item-info">
-                                                        <p>
-                                                            [New 100%] HP Victus 15 fb2063dx 9Z7L4UA - AMD Ryzen
-                                                            5-7535HS | Radeon RX 6550M | 15.6 inch Full HD 144Hz
-                                                        </p>
-                                                    </div>
-                                                    <div className="col col-3 mini-cart-item-price">
-                                                        <p>14.990.000 đ</p>
-                                                        <p>x2</p>
-                                                    </div>
-                                                </li>
-                                            </Link>
+                                            {products.map((item) => (
+                                                <Link key={item.id} to={`/product/${item.product.id}`}>
+                                                    <li className="row mini-cart-item">
+                                                        <div className="col col-3 mini-cart-item-img">
+                                                            <img
+                                                                src={handleImagesBase64(item.product.thumbnail)}
+                                                                alt=""
+                                                                className="mini-cart-item-img-data"
+                                                            />
+                                                        </div>
+                                                        <div className="col col-6 mini-cart-item-info">
+                                                            <p>{item.product.name}</p>
+                                                        </div>
+                                                        <div className="col col-3 mini-cart-item-price">
+                                                            <p>{item.unitPrice.toLocaleString()} đ</p>
+                                                            <p>x{item.quantity}</p>
+                                                        </div>
+                                                    </li>
+                                                </Link>
+                                            ))}
                                         </div>
                                         <Link to={'/user/2/cart'}>
                                             <button type="button" className="btn btn-outline-secondary">

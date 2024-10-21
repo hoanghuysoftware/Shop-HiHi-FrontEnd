@@ -48,7 +48,7 @@ const ProductAdmin = () => {
     };
 
     const addProductNotImage = (newProduct) => {
-        newProduct.map((item) => {
+        newProduct.forEach((item) => {
             setProductListNotActive((prevProducts) => [...prevProducts, item]);
         });
     };

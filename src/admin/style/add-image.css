@@ -4,8 +4,9 @@
     position: relative;
 }
 .product-list table {
-    font-size: 14px;
+    font-size: 13px;
     vertical-align: middle !important;
+    color: #000;
 }
 .product-list table thead th {
     font-size: 18px;
@@ -18,8 +19,12 @@
     overflow: hidden;
 }
 .product-list table tbody tr td:last-child {
-    color: red;
-    font-weight: 500;
+    color: #000;
+    font-weight: 400;
+}
+.product-list table tbody tr td:first-child {
+    font-weight: 700;
+    color: #222;
 }
 .form-img {
     padding: 20px;

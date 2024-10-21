@@ -203,3 +203,9 @@
     background-color: #fff;
     color: var(--hightligth-text);
 }
+
+.empty-cart {
+    width: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}

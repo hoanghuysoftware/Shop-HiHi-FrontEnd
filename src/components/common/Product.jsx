@@ -24,7 +24,7 @@ const Product = ({ brandId, size }) => {
 
     useEffect(() => {
         fetchDataBrandHome(parseInt(brandId));
-    }, [brandId, fetchDataBrandHome]);
+    }, [fetchDataBrandHome, brandId]);
 
     return (
         <div className="product-list row row-cols-lg-5 g-2">
@@ -38,26 +38,28 @@ const Product = ({ brandId, size }) => {
                             <div className="product-item-title">{item.name}</div>
                             <div className="product-item-promotion">
                                 <table>
-                                    <tr>
-                                        <td>CPU</td>
-                                        <td>{item.cpu}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>RAM</td>
-                                        <td>{item.ram}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ổ.cứng</td>
-                                        <td>{item.rom}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Card</td>
-                                        <td>{item.card}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>M.Hình</td>
-                                        <td>{item.screen}</td>
-                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <td>CPU</td>
+                                            <td>{item.cpu}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>RAM</td>
+                                            <td>{item.ram}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ổ.cứng</td>
+                                            <td>{item.rom}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Card</td>
+                                            <td>{item.card}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>M.Hình</td>
+                                            <td>{item.screen}</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                             <div className="product-item-price">

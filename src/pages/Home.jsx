@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Product from '../components/common/Product';
-import Header from '../components/Header';
 import SileShow from '../components/SileShow';
 import BackToTop from '../components/common/BackToTop';
 import Navbar from '../components/common/Navbar';
@@ -9,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [listBrand, setBrand] = useState([]);
+    // const [listProduct, setListProduct] = useState([]);
     const fetchBrand = async () => {
         try {
             const response = await brandService.getAllBrand();
@@ -18,12 +18,21 @@ const Home = () => {
         }
     };
 
+    // const featchDataByBrandId = async (idBrand) => {
+    //     try {
+    //         const response = await productService.getProductByBrandid(idBrand, 0, size);
+    //         setListProduct(response.data);
+    //     } catch (error) {
+    //         console.log('fetch data brand home error: ' + error);
+    //     }
+    // }
+
     useEffect(() => {
         fetchBrand();
     }, []);
+
     return (
         <div>
-            <Header />
             <Navbar />
             <SileShow />
             <div className="container">

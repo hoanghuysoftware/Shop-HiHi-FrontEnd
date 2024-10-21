@@ -7,7 +7,7 @@ import ChartProduct from '../utils/ChartProduct';
 const HomeAdmin = () => {
     const currentYear = new Date().getFullYear();
     const defaultYear = useState();
-    const [year, setYear] = useState('');
+    const [setYear] = useState('');
     for (let i = 2000; i <= currentYear; i++) {
         defaultYear.push(i);
     }
