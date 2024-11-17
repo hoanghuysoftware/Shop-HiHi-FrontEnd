@@ -1,21 +1,82 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MyChart from '../utils/Chart';
 import '../style/home-admin.css';
 import DoughnutComponenet from '../utils/Doughnut';
 import ChartProduct from '../utils/ChartProduct';
+import reportService from '../../services/reportService';
+import productService from '../../services/productService';
 
 const HomeAdmin = () => {
     const currentYear = new Date().getFullYear();
     const defaultYear = useState();
-    const [setYear] = useState('');
+    const [yearSelect, setYear] = useState('');
     for (let i = 2000; i <= currentYear; i++) {
         defaultYear.push(i);
     }
 
+    const [sellYear, setSellYear] = useState([]);
+    const [importYear, setImportYear] = useState([]);
+    const [listProductPopular, setListProductPopular] = useState([]);
+    const [listBrandAndTotal, setListBrandAndTotal] = useState([]);
+
     const handleSelectYear = (e) => {
         setYear(e.target.value);
-        console.log(e.target.value);
     };
+    const handleImage = (image) => {
+        if (image !== undefined) return `data:image/jpeg;base64,${image}`;
+    };
+    const fetchDataPopularProduct = async () => {
+        try {
+            const response = await reportService.get3ProductBestSale();
+            // if (response !== null || response !== undefined) {
+            const tempProduct = [];
+            for (const item of response.data) {
+                const productItem = await productService.getProductById(parseInt(item.idProduct));
+                const obj = {
+                    product: productItem.data,
+                    quantitySell: item.quantity,
+                };
+                tempProduct.push(obj);
+            }
+            setListProductPopular(tempProduct);
+            // }
+        } catch (error) {
+            console.log('Fetching data error at HomeAdmin.jsx: ' + error);
+        }
+    };
+    const fetchDataProductSellByBrands = async () => {
+        try {
+            const resposne = await reportService.getReportByBrandSell();
+            setListBrandAndTotal(resposne.data);
+        } catch (error) {
+            console.log(`Error fetching data for sell product by brand: ${error.message}`);
+        }
+    };
+    const fetchDataImportByYear = async () => {
+        const year = yearSelect !== '' ? yearSelect : new Date().getFullYear();
+        try {
+            const response = await reportService.getReportImportByYear(year);
+            setImportYear(response.data);
+        } catch (error) {
+            console.log(`Fetching data for sell by year: ${error.message}`);
+        }
+    };
+    const fetchDataSellByYear = async () => {
+        const year = yearSelect !== '' ? yearSelect : new Date().getFullYear();
+        try {
+            const response = await reportService.getReportByYear(year);
+            setSellYear(response.data);
+        } catch (error) {
+            console.log(`Fetching data for sell by year: ${error.message}`);
+        }
+    };
+
+    useEffect(() => {
+        fetchDataPopularProduct();
+        fetchDataProductSellByBrands();
+        fetchDataSellByYear();
+        fetchDataImportByYear();
+    }, [yearSelect]);
     return (
         <div className="home-admin-container">
             <div className="home-admin-content-top row gx-4">
@@ -23,13 +84,10 @@ const HomeAdmin = () => {
                     <div className="revenue-top">
                         <h2 className="revenue-title">Thống kê doanh thu</h2>
                         <div className="revenue-control">
-                            <button type="button" className="btn btn-sm btn-primary me-2">
-                                Tháng
-                            </button>
                             <select onChange={handleSelectYear} className="form-select " aria-label="Select year">
                                 <option defaultValue={0}>-- Theo năm --</option>
-                                {defaultYear.map((item, index) => (
-                                    <option key={index} value={item}>
+                                {defaultYear.map((item) => (
+                                    <option key={item} value={item}>
                                         {item}
                                     </option>
                                 ))}
@@ -37,7 +95,8 @@ const HomeAdmin = () => {
                         </div>
                     </div>
                     <div className="revenue-data">
-                        <MyChart /> {/* phai truyen data ban hang && data nhap hang */}
+                        <MyChart dataB={sellYear} dataI={importYear} />{' '}
+                        {/* phai truyen data ban hang && data nhap hang */}
                     </div>
                 </div>
                 <div className="col col-4 home-admin-compare">
@@ -67,7 +126,7 @@ const HomeAdmin = () => {
                     </div>
                     <div className="compare-bottom shadow">
                         <h2 className="m-3 revenue-title">Doanh số theo thương hiệu</h2>
-                        <DoughnutComponenet />
+                        <DoughnutComponenet dataBE={listBrandAndTotal} />
                     </div>
                 </div>
             </div>
@@ -86,69 +145,28 @@ const HomeAdmin = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td style={{ fontWeight: '600' }}>1</td>
-                                    <td className="table-popular">
-                                        <img
-                                            src={`${process.env.PUBLIC_URL}/images/product-test.jpg`}
-                                            alt=""
-                                            className="mini-cart-item-img-data"
-                                        />
-                                        <p>
-                                            [New 100%] HP Victus 15 fb2063dx 9Z7L4UA - AMD Ryzen 5-7535HS | Radeon RX
-                                            6550M | 15.6 inch Full HD 144Hz
-                                        </p>
-                                    </td>
+                                {listProductPopular.map((product, index) => (
+                                    <tr key={index}>
+                                        <td style={{ fontWeight: '600' }}>{product.product.id}</td>
+                                        <td className="table-popular">
+                                            <img
+                                                src={handleImage(product.product.thumbnail)}
+                                                alt=""
+                                                className="mini-cart-item-img-data"
+                                            />
+                                            <p>{product.product.name}</p>
+                                        </td>
 
-                                    <td>
-                                        <p className="table-popular-price">14.000.000đ</p>
-                                    </td>
-                                    <td>
-                                        <span className="table-popular-amount">300</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style={{ fontWeight: '600' }}>1</td>
-                                    <td className="table-popular">
-                                        <img
-                                            src={`${process.env.PUBLIC_URL}/images/product-test.jpg`}
-                                            alt=""
-                                            className="mini-cart-item-img-data"
-                                        />
-                                        <p>
-                                            [New 100%] HP Victus 15 fb2063dx 9Z7L4UA - AMD Ryzen 5-7535HS | Radeon RX
-                                            6550M | 15.6 inch Full HD 144Hz
-                                        </p>
-                                    </td>
-
-                                    <td>
-                                        <p className="table-popular-price">14.000.000đ</p>
-                                    </td>
-                                    <td>
-                                        <span className="table-popular-amount">300</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style={{ fontWeight: '600' }}>1</td>
-                                    <td className="table-popular">
-                                        <img
-                                            src={`${process.env.PUBLIC_URL}/images/product-test.jpg`}
-                                            alt=""
-                                            className="mini-cart-item-img-data"
-                                        />
-                                        <p>
-                                            [New 100%] HP Victus 15 fb2063dx 9Z7L4UA - AMD Ryzen 5-7535HS | Radeon RX
-                                            6550M | 15.6 inch Full HD 144Hz
-                                        </p>
-                                    </td>
-
-                                    <td>
-                                        <p className="table-popular-price">14.000.000đ</p>
-                                    </td>
-                                    <td>
-                                        <span className="table-popular-amount">300</span>
-                                    </td>
-                                </tr>
+                                        <td>
+                                            <p className="table-popular-price">
+                                                {product.product.salePrice.toLocaleString()}đ
+                                            </p>
+                                        </td>
+                                        <td>
+                                            <span className="table-popular-amount">{product.quantitySell}</span>
+                                        </td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>

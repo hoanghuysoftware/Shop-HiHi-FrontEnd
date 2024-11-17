@@ -1,10 +1,15 @@
 import axios from 'axios';
 
 const API_URL = 'http://localhost:8080/api/v1/address-user';
+const token = localStorage.getItem('token');
 
 const getAddressUserByIdUser = async (idUser) => {
     try {
-        const response = await axios.get(`${API_URL}/user/${idUser}`);
+        const response = await axios.get(`${API_URL}/user/${idUser}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return response.data;
     } catch (error) {
         console.error('Error fetching address user:', error);
@@ -14,7 +19,11 @@ const getAddressUserByIdUser = async (idUser) => {
 
 const addNewAddress = async (idUser, data) => {
     try {
-        const response = await axios.post(`${API_URL}/${idUser}`, data);
+        const response = await axios.post(`${API_URL}/${idUser}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return response.data;
     } catch (error) {
         console.error('Error creating new address:', error);
@@ -24,7 +33,11 @@ const addNewAddress = async (idUser, data) => {
 
 const updateAddress = async (idAddress, data) => {
     try {
-        const response = await axios.put(`${API_URL}/${idAddress}`, data);
+        const response = await axios.put(`${API_URL}/${idAddress}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return response.data;
     } catch (error) {
         console.error('Error update address:', error);

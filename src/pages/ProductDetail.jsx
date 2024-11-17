@@ -54,7 +54,6 @@ const ProductDetail = () => {
         fetchImages(idProduct);
         fetchDataReview(idProduct);
     }, [idProduct]);
-    console.log(review);
 
     if (!product) {
         return <Loadding />;

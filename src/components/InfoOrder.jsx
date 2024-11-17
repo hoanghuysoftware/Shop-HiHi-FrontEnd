@@ -3,10 +3,11 @@ import '../style/infoorder.css';
 import { Link } from 'react-router-dom';
 import orderService from '../services/orderService';
 import { debounce } from 'lodash';
+import { useSelector } from 'react-redux';
 
 const InfoOrder = () => {
     const [valueSearch, setValueSearch] = useState('');
-    const userId = 2;
+    const userId = localStorage.getItem('user');
     const [orders, setOrders] = useState([]);
 
     const loadDataOrderByIdOrder = async (orderId) => {

@@ -15,7 +15,15 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
 
-const MyChart = () => {
+const MyChart = ({ dataB, dataI }) => {
+    const dataSell = [dataB.length];
+    const dataImport = [dataB.length];
+    dataB.map((item) => {
+        dataSell[item.month - 1] = item.totalSold;
+    });
+    dataI.map((item) => {
+        dataImport[item.month - 1] = item.totalSold;
+    });
     const month = [
         'Tháng 1',
         'Tháng 2',
@@ -30,57 +38,38 @@ const MyChart = () => {
         'Tháng 11',
         'Tháng 12',
     ];
-    // const data = {
-    //     labels: month,
-    //     datasets: [
-    //         {
-    //             label: 'Bán hàng',
-    //             data: [65, 59, 80, 81, 56, 55, 40],
-    //             fill: false,
-    //             borderColor: 'rgb(75, 192, 192)',
-    //             tension: 0.1,
-    //         },
-    //         {
-    //             label: 'Nhập hàng',
-    //             data: [100, 20, 10, 30, 45, 50, 20],
-    //             fill: true,
-    //             borderColor: 'rgb(209,0,36)',
-    //             tension: 0.1,
-    //         },
-    //     ],
-    // };
     const dataBar = {
         labels: month,
         datasets: [
             {
                 label: 'Bán hàng',
-                data: [65, 59, 80, 81, 56, 55, 40],
+                data: dataSell,
                 fill: false,
                 backgroundColor: 'rgb(75, 192, 192)',
                 borderWidth: 1,
-                // hoverBackgroundColor: 'rgb(209,0,36)',
                 barThickness: 'flex', // do rong cua cot
             },
             {
                 label: 'Nhập hàng',
-                data: [100, 20, 10, 30, 45, 50, 20],
+                data: dataImport,
                 fill: false,
+                barThickness: 'flex', // do rong cua cot
                 backgroundColor: 'rgb(209,0,36)',
             },
         ],
     };
 
     const options = {
-        // responsive: true,
-        // plugins: {
-        //     legend: {
-        //         position: 'top',
-        //     },
-        //     title: {
-        //         display: true,
-        //         text: 'Doanh thu bán hàng',
-        //     },
-        // },
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            //     title: {
+            //         display: true,
+            //         text: 'Doanh thu bán hàng',
+            //     },
+        },
         type: 'bar',
         scales: {
             y: {

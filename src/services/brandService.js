@@ -2,6 +2,10 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:8080/api/v1/brand';
 
+const getToken = () => {
+    return localStorage.getItem('token');
+};
+
 const getAllBrandAdmin = async () => {
     try {
         const response = await axios.get(`${API_URL}/all`);
@@ -13,7 +17,12 @@ const getAllBrandAdmin = async () => {
 };
 const getAllBrand = async () => {
     try {
-        const response = await axios.get(API_URL);
+        const token = getToken();
+        const response = await axios.get(API_URL, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return response.data;
     } catch (error) {
         console.error(error);
@@ -23,7 +32,12 @@ const getAllBrand = async () => {
 
 const createNewBrand = async (brand) => {
     try {
-        const response = await axios.post(API_URL, brand);
+        const token = getToken();
+        const response = await axios.post(API_URL, brand, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return response.data;
     } catch (error) {
         console.log(error);
@@ -33,7 +47,12 @@ const createNewBrand = async (brand) => {
 
 const updateBrand = async (id, brand) => {
     try {
-        const response = await axios.put(`${API_URL}/${id}`, brand);
+        const token = getToken();
+        const response = await axios.put(`${API_URL}/${id}`, brand, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return response.data;
     } catch (error) {
         console.error(error);
@@ -43,7 +62,12 @@ const updateBrand = async (id, brand) => {
 
 const deleteBrand = async (id) => {
     try {
-        const response = await axios.delete(`${API_URL}/${id}`);
+        const token = getToken();
+        const response = await axios.delete(`${API_URL}/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return response.data;
     } catch (error) {
         console.error(error);

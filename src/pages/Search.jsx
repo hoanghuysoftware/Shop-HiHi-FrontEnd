@@ -31,7 +31,7 @@ const Search = () => {
         }
     };
 
-    const debounceFetchData = debounce(featchDataSearch, 1000);
+    const debounceFetchData = debounce(featchDataSearch, 500);
 
     useEffect(() => {
         // featchDataSearch(keyword);

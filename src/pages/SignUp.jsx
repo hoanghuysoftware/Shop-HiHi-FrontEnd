@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/signup.css';
+import authService from '../services/authService';
 const SignUp = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -13,21 +14,25 @@ const SignUp = () => {
 
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // Log thông tin đã nhập ra console
-        console.log({
+        const data = {
             name,
             email,
             phone,
             gender,
-            date,
+            'birth-date': date,
             address,
             username,
             password,
-        });
-        // Chuyển hướng đến trang đăng nhập
-        navigate('/login');
+        };
+        try {
+            const response = await authService.signUP(data);
+            console.log('Sign up successful: ', response.data);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const handleLinkToLogin = () => {
@@ -37,7 +42,7 @@ const SignUp = () => {
     return (
         <div className="container-fluid">
             <div className="sign-up-container">
-                <div className="row gx-2 shadow-sm sign-up-content">
+                <div className="row gx-2 shadow sign-up-content">
                     <div className="sign-up-left col col-6">
                         <h3 className="sign-up-title">Đăng ký</h3>
                         <div className="sign-up-form">
@@ -84,7 +89,7 @@ const SignUp = () => {
                                         <div className=" form-check">
                                             <input
                                                 onChange={(e) => setGender(e.target.value)}
-                                                value="Nam"
+                                                value={0}
                                                 className="form-check-input"
                                                 type="radio"
                                                 name="gender"
@@ -97,7 +102,7 @@ const SignUp = () => {
                                         <div className=" form-check">
                                             <input
                                                 onChange={(e) => setGender(e.target.value)}
-                                                value={'Nu'}
+                                                value={1}
                                                 className="form-check-input"
                                                 type="radio"
                                                 name="gender"

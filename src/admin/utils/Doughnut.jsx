@@ -14,20 +14,20 @@ import {
 } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, ArcElement, Title, Tooltip, Legend);
 
-const DoughnutComponenet = () => {
+const DoughnutComponenet = ({ dataBE }) => {
     const data = {
-        labels: ['Asus', 'Dell', 'MSI', 'Acer', 'HP'],
+        labels: dataBE.map((item) => item.brandName),
         datasets: [
             {
-                label: 'Tổng số lượng bán hàng',
-                data: [300, 50, 100, 30, 50],
+                label: 'Tổng số lượng đã bán',
+                data: dataBE.map((item) => item.totalSold),
                 backgroundColor: [
                     'rgb(255, 99, 132)',
                     'rgb(54, 162, 235)',
                     'rgb(255, 205, 86)',
                     '#343434',
                     '#b1d777',
-                    '#ff80ff',
+                    '#ff80fd',
                 ],
                 hoverOffset: 1,
             },

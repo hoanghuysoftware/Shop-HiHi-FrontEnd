@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux';
 
 const Header = () => {
     const [keyword, setKeyword] = useState('');
-    // const dispatch = useDispatch();
     const products = useSelector((state) => state.cart.items); // Lấy danh sách sản phẩm từ Redux store
     const totalQuantity = useSelector((state) => state.cart.totalQuantity); // L
     // const key2 = useSelector((state) => state.search.keyword);
+    const userId = localStorage.getItem('user');
 
     const navigate = useNavigate();
     // const handleSearch = (e) => {
@@ -24,6 +24,15 @@ const Header = () => {
 
     const handleImagesBase64 = (image) => {
         if (image !== undefined) return `data:image/jpeg;base64,${image}`;
+    };
+
+    const handleSignOut = () => {
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        navigate('/');
+    };
+    const handleSignIn = () => {
+        navigate('/login');
     };
 
     return (
@@ -59,12 +68,12 @@ const Header = () => {
                                     </button>
                                     <ul className="dropdown-menu">
                                         <li>
-                                            <Link to={`/user/${2}/info`}>
+                                            <Link to={`/user/${userId}/info`}>
                                                 <p className="dropdown-item">Tài khoản của tôi</p>
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link to={`/user/${2}/info?tab=order-history`}>
+                                            <Link to={`/user/${userId}/info?tab=order-history`}>
                                                 <p className="dropdown-item">Đơn mua</p>
                                             </Link>
                                         </li>
@@ -72,9 +81,21 @@ const Header = () => {
                                             <hr className="dropdown-divider" />
                                         </li>
                                         <li>
-                                            <Link to={`/login`}>
-                                                <p className="dropdown-item">Đăng xuất</p>
-                                            </Link>
+                                            {userId === null ? (
+                                                <div onClick={() => handleSignIn()}>
+                                                    <p className="dropdown-item">
+                                                        <i className="me-2 fa-solid fa-arrow-right-from-bracket"></i>
+                                                        Đăng nhập
+                                                    </p>
+                                                </div>
+                                            ) : (
+                                                <div onClick={() => handleSignOut()}>
+                                                    <p className="dropdown-item">
+                                                        <i className="me-2 fa-solid fa-arrow-right-from-bracket"></i>
+                                                        Đăng xuất
+                                                    </p>
+                                                </div>
+                                            )}
                                         </li>
                                     </ul>
                                 </div>
@@ -253,7 +274,7 @@ const Header = () => {
                                                 </Link>
                                             ))}
                                         </div>
-                                        <Link to={'/user/2/cart'}>
+                                        <Link to={`/user/${userId}/cart`}>
                                             <button type="button" className="btn btn-outline-secondary">
                                                 Xem tất cả
                                             </button>

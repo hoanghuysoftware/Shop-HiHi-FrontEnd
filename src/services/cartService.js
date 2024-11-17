@@ -3,9 +3,15 @@ import axios from 'axios';
 const API_URL = 'http://localhost:8080/api/v1/cart';
 //  Dung id test cua cart 2 = user co id = 2
 
+const token = localStorage.getItem('token');
+
 const addToCart = async (idCart, data) => {
     try {
-        const response = await axios.post(`${API_URL}/${idCart}`, data);
+        const response = await axios.post(`${API_URL}/${idCart}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return response.data;
     } catch (error) {
         console.error('Error adding item to cart:', error);
@@ -14,7 +20,11 @@ const addToCart = async (idCart, data) => {
 };
 const updateCart = async (idCart, data) => {
     try {
-        const response = await axios.put(`${API_URL}/${idCart}`, data);
+        const response = await axios.put(`${API_URL}/${idCart}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return response.data;
     } catch (error) {
         console.error('Error adding item to cart:', error);
@@ -32,9 +42,23 @@ const getCart = async (idCart) => {
     }
 };
 
+const getCartByIdUser = async (idUser) => {
+    try {
+        const response = await axios.get(`${API_URL}/user/${idUser}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching cart:', error);
+        throw error;
+    }
+};
+
 const deleteCartItem = async (idCart, itemId) => {
     try {
-        const response = await axios.delete(`${API_URL}/${idCart}?product=${itemId}`);
+        const response = await axios.delete(`${API_URL}/${idCart}?product=${itemId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return response.data;
     } catch (error) {
         console.log('Error deleting cart:', error);
@@ -47,6 +71,7 @@ const cartService = {
     getCart,
     updateCart,
     deleteCartItem,
+    getCartByIdUser,
 };
 
 export default cartService;

@@ -52,9 +52,13 @@ const ProductAdmin = () => {
             setProductListNotActive((prevProducts) => [...prevProducts, item]);
         });
     };
+    const addProductNotImage2 = (product) => {
+        setProductListNotActive((prevProducts) => [...prevProducts, product]);
+    };
 
     const addImageForProduct = () => {
         fetchProductListActive();
+        fetchProductListNotImage();
     };
 
     const fetchSuppliers = async () => {
@@ -179,7 +183,7 @@ const ProductAdmin = () => {
                                 listBrand={brands}
                                 listSale={sales}
                                 listSupplier={suppliers}
-                                handleReRenderTable={addProductNotImage}
+                                handleReRenderTable={addProductNotImage2}
                             />
                         </div>
                     </div>

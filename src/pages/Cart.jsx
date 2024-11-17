@@ -3,23 +3,24 @@ import '../style/cart.css';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../components/common/Navbar';
 import cartService from '../services/cartService';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCart, setQuantity, setItemForOrder } from '../redux/actions/CartAction';
 
 const Cart = () => {
     const navigate = useNavigate();
-    const pathname = useParams();
-    const cartId = parseInt(pathname.userId);
     const [products, setProducts] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalQuantity, setTotalQuantity] = useState(0);
     const [productOrder, setProductOrder] = useState([]);
     const dispatch = useDispatch();
+    const userId = localStorage.getItem('user');
+    const [cartId, setCartId] = useState(0);
 
     const fetchDataCart = useCallback(
-        async (idCart) => {
+        async (userId) => {
             try {
-                const response = await cartService.getCart(idCart);
+                const response = await cartService.getCartByIdUser(userId);
+                setCartId(response.data.user.id);
                 setProducts(response.data.shoppingCartDetails);
                 setTotalPrice(response.data.totalPrice);
                 setTotalQuantity(response.data.totalQuantity);
@@ -27,7 +28,7 @@ const Cart = () => {
                 dispatch(setCart(response.data.shoppingCartDetails));
                 dispatch(setQuantity(response.data.totalQuantity));
             } catch (error) {
-                console.log('Error fetch data cart with id: ' + idCart);
+                console.log('Error fetch data cart with id: ' + userId);
             }
         },
         [dispatch],
@@ -43,8 +44,8 @@ const Cart = () => {
             'product-id': idProduct,
         };
         try {
-            await cartService.addToCart(2, data); // 2 => id cua cart
-            fetchDataCart(cartId);
+            await cartService.addToCart(cartId, data); // 2 => id cua cart
+            fetchDataCart(userId);
         } catch (error) {
             console.log('Error Update cart: ', error);
         }
@@ -56,8 +57,8 @@ const Cart = () => {
             'product-id': idProduct,
         };
         try {
-            await cartService.updateCart(2, data); // 2 => id cua cart
-            fetchDataCart(cartId);
+            await cartService.updateCart(cartId, data); // 2 => id cua cart
+            fetchDataCart(userId);
         } catch (error) {
             console.log('Error Update cart: ', error);
         }
@@ -66,7 +67,7 @@ const Cart = () => {
     const handleDeleteProduct = async (idProduct) => {
         try {
             await cartService.deleteCartItem(cartId, idProduct); // 2 => id cua cart
-            fetchDataCart(cartId);
+            fetchDataCart(userId);
         } catch (error) {
             console.log('Error deleting product: ', error);
         }
@@ -95,8 +96,8 @@ const Cart = () => {
         navigate(`/user/${2}/order`); // 2 => id cua user
     };
     useEffect(() => {
-        fetchDataCart(cartId);
-    }, [cartId, fetchDataCart]);
+        fetchDataCart(userId);
+    }, [userId, fetchDataCart]);
 
     return (
         <div>

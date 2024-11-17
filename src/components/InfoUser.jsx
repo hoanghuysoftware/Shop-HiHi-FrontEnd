@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import '../style/infouser.css';
 import userService from '../services/userService';
+import { useSelector } from 'react-redux';
 
 const InfoUser = () => {
+    const userId = localStorage.getItem('user');
     const [user, setUser] = useState();
 
     const fetchDataUser = async (idUser) => {
@@ -32,7 +34,7 @@ const InfoUser = () => {
     };
 
     useEffect(() => {
-        fetchDataUser(2); // Replace with your user id
+        fetchDataUser(userId); // Replace with your user id
     }, []);
 
     return (

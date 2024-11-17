@@ -1,47 +1,63 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../style/order-admin.css';
+import orderService from '../../services/orderService';
+import { debounce } from 'lodash';
 
 const OrderAdmin = () => {
-    // Danh sách đơn hàng với ID và trạng thái
-    const [orders, setOrders] = useState([
-        { id: 2, user: 'Nguyễn Văn A', date: '12-10-2024', quantity: 30, value: '15.000.000đ', status: 0 },
-        { id: 1, user: 'Nguyễn Hoàng Huy', date: '11-10-2024', quantity: 20, value: '14.000.000đ', status: 0 },
-    ]);
+    const [orders, setOrders] = useState([]);
     const [select, setSelect] = useState(null);
     const [search, setSearch] = useState('');
     const handleSelectOrder = (order) => {
         setSelect(order);
-        // console.log(order.id);
     };
     const handChangeInput = (e) => {
         setSearch(e.target.value);
-        console.log(e.target.value);
+        debounceDataOrder(e.target.value);
+    };
+    const loadDataByOrderId = async (orderId) => {
+        try {
+            if (orderId === '') {
+                loadDataOrder();
+            } else {
+                const response = await orderService.getOrderByIdOrder(orderId);
+                setOrders([response.data]);
+            }
+        } catch (error) {
+            console.log('Error loading data order by id' + orderId + 'at OrderAdmin: ', error);
+        }
     };
 
-    const handleSubmitSearch = (e) => {
-        e.preventDefault();
-        console.log(search);
-        // Tìm đơn hàng theo ID
-        // const filteredOrders = orders.filter((order) => order.id.toString().includes(search));
-        // setOrders(filteredOrders);
-    };
+    const debounceDataOrder = debounce(loadDataByOrderId, 500);
 
     // Hàm xử lý thay đổi trạng thái
-    const handleStatusChange = (id, value) => {
-        console.log('ID đơn hàng:', id);
-        console.log('Trạng thái:', value);
-
-        // Cập nhật trạng thái đơn hàng
-        const updatedOrders = orders.map((order) => (order.id === id ? { ...order, status: value } : order));
-        setOrders(updatedOrders);
+    const handleStatusChange = async (id, value) => {
+        try {
+            await orderService.updateOrderStatus(id, value);
+            loadDataOrder();
+        } catch (error) {
+            console.log('Error update status for order: ', error);
+        }
     };
+
+    const loadDataOrder = async () => {
+        try {
+            const response = await orderService.getAllOrder();
+            setOrders(response.data);
+        } catch (error) {
+            console.error(`Error loading order data in OrderAdmin.jsx ${error.message}`);
+        }
+    };
+
+    useEffect(() => {
+        loadDataOrder();
+    }, []);
 
     return (
         <div className="order-admin-container">
             <div className="order-admin-content">
                 <div className="order-admin-top">
                     <h2 className="order-admin-title">Danh sách đơn hàng</h2>
-                    <form onSubmit={handleSubmitSearch}>
+                    <form>
                         <div className="mb-3 form-search-order-admin">
                             <input
                                 type="text"
@@ -61,8 +77,8 @@ const OrderAdmin = () => {
                                 <th scope="col">ID</th>
                                 <th scope="col">Người đặt</th>
                                 <th scope="col">Ngày đặt hàng</th>
-                                <th scope="col">S.lượng SP</th>
                                 <th scope="col">Giá trị</th>
+                                <th scope="col">PT thanh toán</th>
                                 <th scope="col">Trạng thái</th>
                                 <th scope="col"></th>
                             </tr>
@@ -71,23 +87,24 @@ const OrderAdmin = () => {
                             {orders.map((order) => (
                                 <tr key={order.id}>
                                     <th scope="row">{order.id}</th>
-                                    <td>{order.user}</td>
-                                    <td>{order.date}</td>
-                                    <td>{order.quantity}</td>
-                                    <td>{order.value}</td>
+                                    <td>{order.user.name}</td>
+                                    <td>{order.orderDate}</td>
+                                    <td>{order.totalPrice.toLocaleString()}đ</td>
+                                    <td>{order.paymentMethod}</td>
                                     <td>
                                         <select
                                             className="form-select"
                                             aria-label="Default select example"
+                                            value={order.status.id}
                                             onChange={(e) => handleStatusChange(order.id, e.target.value)}
                                         >
-                                            <option value="0">-- Trạng thái --</option>
-                                            <option value="1">Đang chờ xử lý</option>
-                                            <option value="2">Đang xử lý</option>
-                                            <option value="3">Đang giao</option>
-                                            <option value="4">Đã giao hàng</option>
-                                            <option value="5">Hoàn thành</option>
-                                            <option value="6">Đã hủy</option>
+                                            <option value={0}>-- Trạng thái --</option>
+                                            <option value={1}>Đang chờ xử lý</option>
+                                            <option value={2}>Đang xử lý</option>
+                                            <option value={3}>Đang giao</option>
+                                            <option value={5}>Đã giao hàng</option>
+                                            <option value={6}>Hoàn thành</option>
+                                            <option value={7}>Đã hủy</option>
                                         </select>
                                     </td>
                                     <td>
@@ -139,19 +156,19 @@ const OrderAdmin = () => {
                                             <strong>ID:</strong> {select.id}
                                         </p>
                                         <p>
-                                            <strong>Người đặt:</strong> {select.user}
+                                            <strong>Người đặt:</strong> {select.user.name}
                                         </p>
                                         <p>
-                                            <strong>Ngày đặt hàng:</strong> {select.date}
+                                            <strong>Ngày đặt hàng:</strong> {select.orderDate}
                                         </p>
                                         <p>
-                                            <strong>Số lượng SP:</strong> {select.quantity}
+                                            <strong>Giá trị:</strong> {select.totalPrice.toLocaleString()}đ
                                         </p>
                                         <p>
-                                            <strong>Giá trị:</strong> {select.value}
+                                            <strong>Phương thức thanh toán:</strong> {select.paymentMethod}
                                         </p>
                                         <p>
-                                            <strong>Trạng thái:</strong> {select.status}
+                                            <strong>Trạng thái:</strong> {select.status.name}
                                         </p>
                                     </div>
                                 )}

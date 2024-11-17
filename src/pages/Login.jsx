@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import '../style/login.css';
 import { useNavigate } from 'react-router-dom';
-// import userService from '../services/userService';
-// import { login } from '../redux/actions/UserAction';
-// import { useDispatch } from 'react-redux';
+import authService from '../services/authService';
+import userService from '../services/userService';
+import { login } from '../redux/actions/UserAction';
+import { useDispatch } from 'react-redux';
+import AlertUtils from '../admin/utils/Alert';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    // const [user, setUser] = useState('');
+    const [message, setMessage] = useState('');
+    const [status, setStatus] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
     const navigate = useNavigate();
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -24,21 +28,55 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(username + password);
-        // try {
-        //     const response = await userService.getUserById(2);
-        //     // setUser(response.data);
-        //     dispatch(login(response.data));
-        // } catch (error) {
-        //     console.log('Error when load user at Login.jsx: ' + error);
-        // }
-        navigate('/');
+        const dataPost = {
+            username: username,
+            password: password,
+        };
+        try {
+            const response = await authService.login(dataPost);
+            const token = response.token;
+            localStorage.setItem('token', token);
+            autoShowAlert('Đăng nhập thành công', 200);
+            setTimeout(() => {
+                getUserFromUsername(dataPost);
+            }, 1500);
+        } catch (error) {
+            autoShowAlert('Đăng nhập không thành công', 410);
+            console.log('Error at login: ' + error);
+        }
+    };
+
+    const autoShowAlert = (message, status) => {
+        setMessage(message);
+        setStatus(status);
+        setShowAlert(true);
+        setTimeout(() => {
+            setMessage('');
+            setStatus('');
+            setShowAlert(false);
+        }, 1000);
+    };
+
+    const getUserFromUsername = async (dataPost) => {
+        try {
+            const response = await userService.getUserByUsername(dataPost.username);
+            dispatch(login(response.data.id));
+            localStorage.setItem('user', response.data.id);
+            const role = response.data.role.roleName;
+            role === 'ADMIN' ? navigate('/admin') : navigate('/');
+            window.location.reload();
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
         <div className="container-fluid">
-            <div className="login-container">
-                <div className="row gx-2 shadow-sm login-content">
+            <div className="login-container position-relative">
+                <div className="position-absolute top-0 end-50 mt-5">
+                    {showAlert && <AlertUtils message={message} status={status} />}
+                </div>
+                <div className="row gx-2 shadow login-content">
                     <div className="col col-6 login-left">
                         <div className="login-top">
                             <h3 className="login-title">Đăng nhập</h3>

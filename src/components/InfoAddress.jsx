@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../style/infoaddress.css';
 import addressService from '../services/addressService';
 import data from '../data/address.json';
+import { useSelector } from 'react-redux';
 // import AddressModal from './common/AddressModal';
 
 const InfoAddress = () => {
@@ -13,6 +14,7 @@ const InfoAddress = () => {
     const [addressDetails, setAddressDetails] = useState('');
     const [isUpdate, setIsUpdate] = useState(false);
     const [idUpdate, setIdUpdate] = useState('');
+    const userId = localStorage.getItem('user');
 
     const handleChangeSelectAddressLV1 = (e) => {
         setAddressLV1(e.target.value);
@@ -51,9 +53,9 @@ const InfoAddress = () => {
             if (isUpdate) {
                 await addressService.updateAddress(idUpdate, dataPost);
             } else {
-                await addressService.addNewAddress(2, dataPost); // 2 => id of User
+                await addressService.addNewAddress(userId, dataPost); // 2 => id of User
             }
-            fetchDataAddress(2);
+            fetchDataAddress(userId);
         } catch (error) {
             console.log(`Error when creating new address: ${error.message}`);
         }
@@ -69,7 +71,7 @@ const InfoAddress = () => {
     };
 
     useEffect(() => {
-        fetchDataAddress(2); // 2 =?> id user
+        fetchDataAddress(userId); // id user
         setDataAddress(data.data);
     }, []);
 

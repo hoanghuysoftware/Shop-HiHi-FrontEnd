@@ -5,10 +5,10 @@ import BackToTop from '../components/common/BackToTop';
 import Navbar from '../components/common/Navbar';
 import brandService from '../services/brandService';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
     const [listBrand, setBrand] = useState([]);
-    // const [listProduct, setListProduct] = useState([]);
     const fetchBrand = async () => {
         try {
             const response = await brandService.getAllBrand();
@@ -17,16 +17,6 @@ const Home = () => {
             console.log('Error fetching brand at home page', error);
         }
     };
-
-    // const featchDataByBrandId = async (idBrand) => {
-    //     try {
-    //         const response = await productService.getProductByBrandid(idBrand, 0, size);
-    //         setListProduct(response.data);
-    //     } catch (error) {
-    //         console.log('fetch data brand home error: ' + error);
-    //     }
-    // }
-
     useEffect(() => {
         fetchBrand();
     }, []);
