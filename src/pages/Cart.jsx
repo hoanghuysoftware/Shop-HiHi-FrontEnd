@@ -93,7 +93,7 @@ const Cart = () => {
     const handleClickPayment = () => {
         dispatch(setItemForOrder(productOrder));
         console.log(productOrder);
-        navigate(`/user/${2}/order`); // 2 => id cua user
+        navigate(`/user/${userId}/order`); // 2 => id cua user
     };
     useEffect(() => {
         fetchDataCart(userId);

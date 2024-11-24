@@ -15,6 +15,7 @@ const CheckOut = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const listItems = useSelector((state) => state.cart.itemForOrder);
     const [user, setUser] = useState('');
+    const userId = localStorage.getItem('user');
 
     const handChangeInputNote = (e) => {
         setNote(e.target.value);
@@ -44,7 +45,7 @@ const CheckOut = () => {
         });
 
         setTotalPrice(result);
-        loadDataUser(2); // 2 => user id
+        loadDataUser(userId); // 2 => user id
     }, [listItems]);
 
     const handleSubmitForm = async (e) => {
@@ -54,18 +55,20 @@ const CheckOut = () => {
             paymentMethod: paymentMethod,
             deliveryAddressID: deliveryAddressID, // => lay tu select dia chi
             statusId: 1,
-            userId: 2,
+            userId: userId,
             orderDetails: listItems.map((item) => ({
                 'product-id': item.productId,
                 quantity: item.quantity,
             })),
         };
-
         try {
             const response = await orderService.createNewOrder(dataPost);
-            alert('Đặt hàng thành công! Mã đơn hàng: #' + response.data.id);
-
-            navigate(`/user/${2}/info?tab=order-history`); // 2 => user id
+            const idOrder = response.data.id;
+            if (paymentMethod === 'ONLINE') {
+                navigate(`/pending-pay/${idOrder}`);
+            } else {
+                navigate(`/user/${userId}/info?tab=order-history`); // 2 => user id
+            }
         } catch (error) {
             console.log('Error while send request to server at Checkout: ', error);
         }

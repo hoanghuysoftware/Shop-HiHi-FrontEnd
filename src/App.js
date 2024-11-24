@@ -19,6 +19,8 @@ import { useDispatch } from 'react-redux';
 import cartService from './services/cartService';
 import { useEffect } from 'react';
 import Header from './components/Header';
+import ReturnPay from './pages/ReturnPay';
+import PendingPay from './pages/PendingPay';
 
 function LayoutWithHeader() {
     return (
@@ -70,6 +72,8 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/sign-up" element={<SignUp />} />
                         <Route path="/admin" element={<AdminLayout />} />
+                        <Route path="/pending-pay/:orderId" element={<PendingPay />} />
+                        <Route path="/result-pay" element={<ReturnPay />} />
                     </Route>
                 </Routes>
             </div>

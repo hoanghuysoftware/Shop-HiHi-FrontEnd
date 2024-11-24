@@ -18,12 +18,8 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarEleme
 const MyChart = ({ dataB, dataI }) => {
     const dataSell = [dataB.length];
     const dataImport = [dataB.length];
-    dataB.map((item) => {
-        dataSell[item.month - 1] = item.totalSold;
-    });
-    dataI.map((item) => {
-        dataImport[item.month - 1] = item.totalSold;
-    });
+    dataB.map((item) => (dataSell[item.month - 1] = item.totalSold));
+    dataI.map((item) => (dataImport[item.month - 1] = item.totalSold));
     const month = [
         'Tháng 1',
         'Tháng 2',

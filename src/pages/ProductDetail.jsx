@@ -16,6 +16,7 @@ const ProductDetail = () => {
     const [listImages, setListImages] = useState([]);
     const [quantity, setQuantity] = useState(1);
     const [review, setReview] = useState([]);
+    const userId = localStorage.getItem('user');
 
     const fetchProduct = async (idProduct) => {
         try {
@@ -79,8 +80,8 @@ const ProductDetail = () => {
         };
 
         try {
-            await cartService.addToCart(2, data);
-            navigate(`/user/${2}/cart`); // chuyen den gio hang cua user co id = 2
+            await cartService.addToCart(userId, data);
+            navigate(`/user/${userId}/cart`); // chuyen den gio hang cua user co id = 2
         } catch (error) {
             console.log('Error adding to cart: ', error);
         }
